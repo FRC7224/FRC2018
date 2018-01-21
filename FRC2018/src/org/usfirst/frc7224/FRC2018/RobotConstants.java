@@ -29,6 +29,10 @@ public class RobotConstants {
 	public static double Ki = 0.001; // 0.0025
 	public static double Kd = 0.0;
 	public static double gyroPIDErrorTolerance = 1.0; // in degrees
+	public static double gyroPIDOutput = 0.0;
+	
+	
+	
 
 /*	***************** Old robot  *************************
  * public static boolean last = true;
