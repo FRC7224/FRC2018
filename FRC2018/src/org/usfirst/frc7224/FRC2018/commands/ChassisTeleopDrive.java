@@ -11,7 +11,10 @@
 
 package org.usfirst.frc7224.FRC2018.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc7224.FRC2018.Robot;
+import org.usfirst.frc7224.FRC2018.RobotConstants;
 
 /**
  *
@@ -20,12 +23,14 @@ public class ChassisTeleopDrive extends Command {
 
 
     public ChassisTeleopDrive() {
+    	 requires(Robot.chassis);
 
    }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+  		
     	 Robot.chassis.setupDrive();
     }
 
@@ -36,6 +41,8 @@ public class ChassisTeleopDrive extends Command {
              double turn = Robot.chassis.deadZone(Robot.oi.joystick1.getX()); // turn
              Robot.chassis.arcadeDrive(forward, turn);
              Robot.chassis.displayChasisData();
+     		SmartDashboard.putNumber("Y", forward);
+    		SmartDashboard.putNumber("X", turn);
 
     }
 
