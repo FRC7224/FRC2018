@@ -38,8 +38,6 @@ public class RobotMap {
     public static WPI_TalonSRX chassisTalonSRX3 = new WPI_TalonSRX(3);
     public static WPI_TalonSRX chassisTalonSRX2 = new WPI_TalonSRX(2);
     public static WPI_TalonSRX chassisTalonSRX1 = new WPI_TalonSRX(1);
-
-    
 /*    public static WPI_TalonSRX armTalonSRX7 = new WPI_TalonSRX(7);
     public static WPI_TalonSRX winchTalonSRX8  = new WPI_TalonSRX(8);
     public static WPI_TalonSRX intakeTalonSRX9= new WPI_TalonSRX(9);

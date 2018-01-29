@@ -8,6 +8,7 @@
 package org.usfirst.frc.team7224.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.livewindow.*;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -31,14 +32,16 @@ import org.usfirst.frc.team7224.robot.subsystems.Chassis;
 public class Robot extends TimedRobot {
 	public static final ExampleSubsystem kExampleSubsystem
 			= new ExampleSubsystem();
-	public static OI m_oi;
+	public static final Chassis chassis
+	        = new Chassis();
+	public static OI oi;
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 	
-	   public static OI oi;
+
 //	    public static Pneumatics pneumatics;
-	    public static Chassis chassis;
+//	    public static Chassis chassis;
 //	    public static Arm arm;
 //	    public static Claw claw;
 //	    public static Winch winch;
@@ -52,10 +55,11 @@ public class Robot extends TimedRobot {
 		oi = new OI();
 		
   //      pneumatics = new Pneumatics();
-        chassis = new Chassis();
+ //       chassis = new Chassis();
   //      arm = new Arm();
  //       claw = new Claw();
  //       winch = new Winch();
+		LiveWindow.disableAllTelemetry();
     	SmartDashboard.putNumber("robotinit",0);
         
 		m_chooser.addDefault("Default Auto", new ExampleCommand());

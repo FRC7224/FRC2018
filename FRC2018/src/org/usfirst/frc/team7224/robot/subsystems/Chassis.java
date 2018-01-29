@@ -57,19 +57,12 @@ public class Chassis extends PIDSubsystem {
     //	                    double i,
     //	                    double d)
     		setAbsoluteTolerance(RobotConstants.gyroPIDErrorTolerance);
-    		getPIDController().setContinuous(false);
     		getPIDController().setInputRange(-180, 180);
+    		getPIDController().setContinuous(true);
     		getPIDController().setOutputRange(-1.0, 1.0);
     		resetEncoders();
     		gyro.calibrate();
-    		SmartDashboard.putNumber("chassisinit",0);
-    /*		right1.setExpiration(0);
-    		right2.setExpiration(0);
-    		right3.setExpiration(0);
-    		left1.setExpiration(0);
-    		left2.setExpiration(0);
-    		left3.setExpiration(0);
-    */		         	}
+  		         	}
    
       protected double returnPIDInput() {
 		// Used - in code to create PID thread
@@ -120,27 +113,26 @@ public class Chassis extends PIDSubsystem {
  		gyro.reset();
  		getPIDController().setSetpoint(0); // make setpoint current angle
  		getPIDController().enable();
- 		
  		brakemode (false);
 
  	}
 
  	public void brakemode(boolean brakemode) {
  		if (brakemode) {
- 	//	 	left1.setNeutralMode( NeutralMode.Brake);	
- 	//	 	left2.setNeutralMode( NeutralMode.Brake);	
- 	 //	 	left3.setNeutralMode( NeutralMode.Brake);
- 	 //		right1.setNeutralMode(NeutralMode.Brake);	
- 	 //		right2.setNeutralMode(NeutralMode.Brake);	
- 	 //		right3.setNeutralMode( NeutralMode.Brake);
+ 		 	left1.setNeutralMode( NeutralMode.Brake);	
+ 	    	left2.setNeutralMode( NeutralMode.Brake);	
+ 	  	 	left3.setNeutralMode( NeutralMode.Brake);
+ 	 		right1.setNeutralMode(NeutralMode.Brake);	
+ 	    	right2.setNeutralMode(NeutralMode.Brake);	
+ 	 		right3.setNeutralMode( NeutralMode.Brake);
  			} else
  		    {
- 	//		left1.setNeutralMode( NeutralMode.Coast);	
- 	// 		left2.setNeutralMode( NeutralMode.Coast);	
- 	// 		left3.setNeutralMode( NeutralMode.Coast);	
- 	// 		right1.setNeutralMode( NeutralMode.Coast);	
- 	 //		right2.setNeutralMode( NeutralMode.Coast);	
- 	// 		right3.setNeutralMode( NeutralMode.Coast);	
+ 			left1.setNeutralMode( NeutralMode.Coast);	
+ 	 		left2.setNeutralMode( NeutralMode.Coast);	
+ 	 		left3.setNeutralMode( NeutralMode.Coast);	
+ 	 		right1.setNeutralMode( NeutralMode.Coast);	
+ 	 		right2.setNeutralMode( NeutralMode.Coast);	
+ 			right3.setNeutralMode( NeutralMode.Coast);	
  		    }
  	 	}
  	
