@@ -16,6 +16,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
  	import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team7224.robot.subsystems.Arm;
+import org.usfirst.frc.team7224.robot.subsystems.Pneumatics;
 import org.usfirst.frc7224.FRC2018.commands.*;
 import org.usfirst.frc7224.FRC2018.subsystems.*;
 

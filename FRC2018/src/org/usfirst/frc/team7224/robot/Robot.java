@@ -13,14 +13,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team7224.robot.commands.ExampleCommand;
-import org.usfirst.frc.team7224.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team7224.robot.subsystems.Pneumatics;
+import org.usfirst.frc.team7224.robot.subsystems.Winch;
 import org.usfirst.frc.team7224.robot.OI;
-// import org.usfirst.frc.team7224.robot.subsystems.Arm;
+import org.usfirst.frc.team7224.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team7224.robot.subsystems.Arm;
 import org.usfirst.frc.team7224.robot.subsystems.Chassis;
-// import org.usfirst.frc.team7224.robot.subsystems.Claw;
-// import org.usfirst.frc.team7224.robot.subsystems.Pneumatics;
-// import org.usfirst.frc.team7224.robot.subsystems.Winch;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,10 +29,15 @@ import org.usfirst.frc.team7224.robot.subsystems.Chassis;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static final ExampleSubsystem kExampleSubsystem
-			= new ExampleSubsystem();
+
 	public static final Chassis chassis
 	        = new Chassis();
+	public static final Arm arm
+            = new Arm(); 
+	public static final Pneumatics pneumatics
+            = new Pneumatics(); 
+	public static final Winch winch
+	        = new Winch();
 	public static OI oi;
 
 	Command m_autonomousCommand;
@@ -41,8 +45,8 @@ public class Robot extends TimedRobot {
 	
 
 //	    public static Pneumatics pneumatics;
-//	    public static Chassis chassis;
-//	    public static Arm arm;
+//        public static Chassis chassis;
+  //      public static Arm arm;
 //	    public static Claw claw;
 //	    public static Winch winch;
 
@@ -62,7 +66,7 @@ public class Robot extends TimedRobot {
 		LiveWindow.disableAllTelemetry();
     	SmartDashboard.putNumber("robotinit",0);
         
-		m_chooser.addDefault("Default Auto", new ExampleCommand());
+		m_chooser.addDefault("Default Auto", new AutonomousCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 

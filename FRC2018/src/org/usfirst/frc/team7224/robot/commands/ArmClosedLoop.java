@@ -1,39 +1,37 @@
 
-package org.usfirst.frc7224.FRC2018.commands;
+package org.usfirst.frc.team7224.robot.commands;
+
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team7224.robot.Robot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc7224.FRC2018.Robot;
-import org.usfirst.frc7224.FRC2018.RobotConstants;
+
+
 
 /**
  *
  */
-public class ChassisTeleopDrive extends Command {
+public class ArmClosedLoop extends Command {
 
 
-    public ChassisTeleopDrive() {
-    	 requires(Robot.chassis);
+    public ArmClosedLoop() {
+    	 requires(Robot.arm);
 
    }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-  		
-    	 Robot.chassis.setupDrive();
-    }
+  		  	 Robot.arm.armSetup();
+     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	     double forward = Robot.chassis.deadZone(Robot.oi.joystick1.getY()); // forward
-             double turn = Robot.chassis.deadZone(Robot.oi.joystick1.getX()); // turn
-             Robot.chassis.arcadeDrive(forward, turn);
-             Robot.chassis.displayChasisData();
-     		SmartDashboard.putNumber("Y", forward);
-    		SmartDashboard.putNumber("X", turn);
-
+     	     double height = Robot.chassis.deadZone(Robot.oi.joystick1.getZ()); // height
+             Robot.arm.armControl(height);
+             SmartDashboard.putNumber("Height", height);
+    
     }
 
     // Make this return true when this Command no longer needs to run execute()

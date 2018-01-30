@@ -45,7 +45,6 @@ public class Chassis extends PIDSubsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		setDefaultCommand(new ChassisTeleopDrive());
-		SmartDashboard.putNumber("initinit",0);
 	}
 
 
