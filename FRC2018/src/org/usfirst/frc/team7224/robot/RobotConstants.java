@@ -18,10 +18,11 @@ public class RobotConstants {
 	
 	// Joystick 1 constants
 	public static double DEADZONE = 0.1; // updated by MG
-	public static int CLAWBUTTON = 1;
-	public static int ARM_SWITCHT = 6;
-	public static int ARM_FIELDHT = 7;
-	public static int ARM_SCALEHT = 5; 
+	public static int Clawbutton = 1;
+
+	public static int Arm_FieldHT = 5;
+	public static int Arm_SwitchHT = 6;
+	public static int Arm_ScaleHT = 7; 
 	
 	// Chassis Constants
 	public static boolean enablePID = true;
@@ -30,7 +31,7 @@ public class RobotConstants {
 	public static double Kd = 0.1;  // .1
 	public static double gyroPIDErrorTolerance = 1.0; // in degrees
 	public static double gyroPIDOutput = 0.0;
-	
+	public static double shiftRate = 500;
 	
 	
 	/**  arm constants
@@ -47,6 +48,13 @@ public class RobotConstants {
 	 * and report to DS if action fails.
 	 */
 	public static final int kTimeoutMs = 10;
+	
+	
+	// Gear constants
+
+	public static boolean clawOpenState = false;
+	public static double closeTimer_timer = .3;
+
 	
 
 /*	***************** Old robot  *************************

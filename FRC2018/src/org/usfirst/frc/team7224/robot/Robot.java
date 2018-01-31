@@ -19,6 +19,7 @@ import org.usfirst.frc.team7224.robot.OI;
 import org.usfirst.frc.team7224.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team7224.robot.subsystems.Arm;
 import org.usfirst.frc.team7224.robot.subsystems.Chassis;
+import org.usfirst.frc.team7224.robot.subsystems.Claw;
 
 
 /**
@@ -38,6 +39,8 @@ public class Robot extends TimedRobot {
             = new Pneumatics(); 
 	public static final Winch winch
 	        = new Winch();
+	public static final Claw claw
+	        = new Claw();
 	public static OI oi;
 
 	Command m_autonomousCommand;

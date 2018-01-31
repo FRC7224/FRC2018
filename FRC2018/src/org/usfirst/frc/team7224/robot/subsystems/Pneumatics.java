@@ -5,6 +5,7 @@ import org.usfirst.frc.team7224.robot.commands.TeleopPneumatics;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
 *
@@ -34,6 +35,7 @@ public class Pneumatics extends Subsystem {
 
    public void startCompressor() {
        compressor.start();
+   	SmartDashboard.putNumber("got to start", 0);
    }
 }
 

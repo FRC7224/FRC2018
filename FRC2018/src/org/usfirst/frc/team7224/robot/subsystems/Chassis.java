@@ -9,8 +9,9 @@ package org.usfirst.frc.team7224.robot.subsystems;
  import com.ctre.phoenix.motorcontrol.NeutralMode;
  import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  import edu.wpi.first.wpilibj.ADXRS450_Gyro;
- import edu.wpi.first.wpilibj.Encoder; 
- import edu.wpi.first.wpilibj.Timer;
+ import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Timer;
  import org.usfirst.frc.team7224.robot.RobotConstants;
  import org.usfirst.frc.team7224.robot.RobotMap;
 import org.usfirst.frc.team7224.robot.commands.*;
@@ -34,7 +35,7 @@ public class Chassis extends PIDSubsystem {
     
 	private final ADXRS450_Gyro gyro = RobotMap.spiGyro_1;
 
-
+	private final Solenoid shifter = RobotMap.pneumaticsSolenoid0;
 	private final Encoder leftEncoder = RobotMap.leftEncoder;
 	private final Encoder rightEncoder = RobotMap.rigthEncoder;
 
@@ -190,6 +191,23 @@ public class Chassis extends PIDSubsystem {
 		}
 	   } // End of PID enable loop\
  	
+	 public void autoshift() {
+         // opens shifter
+			if (leftEncoder.getRate() >  RobotConstants.shiftRate) 
+				closeShifter();
+			else
+				openShifter();
+     }
+ 		
+  	 public void openShifter() {
+         // opens shifter
+         	shifter.set(true);
+     }
+
+     public void closeShifter() {
+           // closes shifter
+     	   shifter.set(false);
+     }
 	
 	public void displayChasisData() {
 		// These are the new encoders
@@ -199,6 +217,7 @@ public class Chassis extends PIDSubsystem {
 		SmartDashboard.putNumber("Chassis gyro setpoint", getSetpoint());
 		SmartDashboard.putNumber("Chassis gyro error", getPIDController().getError());
 		SmartDashboard.putNumber("Chassis turn", RobotConstants.gyroPIDOutput);
+		SmartDashboard.putNumber("Drive Rate",leftEncoder.getRate());
 	}
 	
 	

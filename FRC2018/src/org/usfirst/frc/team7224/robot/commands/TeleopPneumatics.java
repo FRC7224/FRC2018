@@ -10,6 +10,7 @@ package org.usfirst.frc.team7224.robot.commands;
 import org.usfirst.frc.team7224.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
@@ -23,6 +24,7 @@ public class TeleopPneumatics extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         Robot.pneumatics.startCompressor();
+    	SmartDashboard.putNumber("Tele ninit ph",0);
     }
 
     // Called repeatedly when this Command is scheduled to run
