@@ -193,20 +193,22 @@ public class Chassis extends PIDSubsystem {
  	
 	 public void autoshift() {
          // opens shifter
-			if (leftEncoder.getRate() >  RobotConstants.shiftRate) 
+			if (-leftEncoder.getRate() >  RobotConstants.shiftRateUp) {
 				closeShifter();
-			else
+			} else
+				if (-leftEncoder.getRate() <  RobotConstants.shiftRateDown) {
 				openShifter();
+			}
      }
  		
   	 public void openShifter() {
          // opens shifter
-         	shifter.set(true);
+         //	shifter.set(true);
      }
 
      public void closeShifter() {
            // closes shifter
-     	   shifter.set(false);
+     	 //  shifter.set(false);
      }
 	
 	public void displayChasisData() {

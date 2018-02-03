@@ -19,6 +19,7 @@ public class RobotConstants {
 	// Joystick 1 constants
 	public static double DEADZONE = 0.1; // updated by MG
 	public static int Clawbutton = 1;
+	public static int Shiftbutton = 2;
 
 	public static int Arm_FieldHT = 5;
 	public static int Arm_SwitchHT = 6;
@@ -31,8 +32,9 @@ public class RobotConstants {
 	public static double Kd = 0.1;  // .1
 	public static double gyroPIDErrorTolerance = 1.0; // in degrees
 	public static double gyroPIDOutput = 0.0;
-	public static double shiftRate = 500;
-	
+	public static double shiftRateUp = 1200;
+	public static double shiftRateDown = 800;
+	public static boolean shiftOpenState = false;
 	
 	/**  arm constants
 	 * Which PID slot to pull gains from.  Starting 2018, you can choose 
@@ -50,7 +52,7 @@ public class RobotConstants {
 	public static final int kTimeoutMs = 10;
 	
 	
-	// Gear constants
+	// Claw constants
 
 	public static boolean clawOpenState = false;
 	public static double closeTimer_timer = .3;

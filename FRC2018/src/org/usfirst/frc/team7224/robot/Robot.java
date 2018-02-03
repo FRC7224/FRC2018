@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team7224.robot.subsystems.Pneumatics;
+import org.usfirst.frc.team7224.robot.subsystems.Shifter;
 import org.usfirst.frc.team7224.robot.subsystems.Winch;
 import org.usfirst.frc.team7224.robot.OI;
 import org.usfirst.frc.team7224.robot.commands.AutonomousCommand;
@@ -41,6 +42,8 @@ public class Robot extends TimedRobot {
 	        = new Winch();
 	public static final Claw claw
 	        = new Claw();
+	public static final Shifter shifter
+	        = new Shifter();
 	public static OI oi;
 
 	Command m_autonomousCommand;
