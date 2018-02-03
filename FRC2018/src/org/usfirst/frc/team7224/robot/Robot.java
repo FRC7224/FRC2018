@@ -7,9 +7,11 @@
 
 package org.usfirst.frc.team7224.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.*;
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team7224.robot.commands.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,6 +23,7 @@ import org.usfirst.frc.team7224.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team7224.robot.subsystems.Arm;
 import org.usfirst.frc.team7224.robot.subsystems.Chassis;
 import org.usfirst.frc.team7224.robot.subsystems.Claw;
+
 
 
 /**
@@ -63,18 +66,23 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		
-  //      pneumatics = new Pneumatics();
- //       chassis = new Chassis();
-  //      arm = new Arm();
- //       claw = new Claw();
- //       winch = new Winch();
+		Command autonomousCommand;
+		SendableChooser<Command> autoChooser;
+		CameraServer server;
+
+
 		LiveWindow.disableAllTelemetry();
-    	SmartDashboard.putNumber("robotinit",0);
+ 
         
-		m_chooser.addDefault("Default Auto", new AutonomousCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+	      autoChooser = new SendableChooser();
+	      autoChooser.addObject("Do Nothing", new AutonomousDoNothing());
+		  autoChooser.addObject("Drive Forward", new AutonomousDriveForward());
+		  autoChooser.addObject("AutoSelect", new AutonomousAutoSelect());
+		  SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+		 
+	      server = CameraServer.getInstance();
+		  server.startAutomaticCapture(0);
+		  server.startAutomaticCapture(1);
 
 	}
 

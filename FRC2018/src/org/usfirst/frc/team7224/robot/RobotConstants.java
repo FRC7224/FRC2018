@@ -57,12 +57,16 @@ public class RobotConstants {
 	public static boolean clawOpenState = false;
 	public static double closeTimer_timer = .3;
 
-	
+	// Autonomous Constants
+	public static int TrajectorySegments;
+	public static boolean isTrajectory = false;
+	public static int encodermode = 0;
 
 /*	***************** Old robot  *************************
  * public static boolean last = true;
  
 	public static boolean isAutonomousAiming = false;
+	
 	public static int encodermode = 0;
 
 	// Joystick 1 constants

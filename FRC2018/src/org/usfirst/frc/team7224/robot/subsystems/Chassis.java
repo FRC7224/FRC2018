@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.Timer;
  import org.usfirst.frc.team7224.robot.RobotConstants;
  import org.usfirst.frc.team7224.robot.RobotMap;
 import org.usfirst.frc.team7224.robot.commands.*;
- 
+
  
  
  
@@ -41,6 +41,7 @@ public class Chassis extends PIDSubsystem {
 
 	private boolean turning = true;
 	Timer setPointTimer = new Timer();
+	public int lencodetemp = 1;
 
 
 	public void initDefaultCommand() {
@@ -96,7 +97,11 @@ public class Chassis extends PIDSubsystem {
 		leftEncoder.reset();
 		rightEncoder.reset();
 	    }
- 
+		
+		
+	public double getGyroAngle() {
+		return gyro.getAngle();
+	}
  
     
  // setup
@@ -210,6 +215,30 @@ public class Chassis extends PIDSubsystem {
            // closes shifter
      	 //  shifter.set(false);
      }
+     
+ 	public int getLeftEncoderPosition() {
+		int intValue;
+		switch (RobotConstants.encodermode) {
+        case 0:  intValue = -(int) leftEncoder.get() *4;
+                 return -intValue;
+        case 1:  lencodetemp = lencodetemp +3;  
+                 return lencodetemp;
+        default: intValue = -(int) leftEncoder.get() *4;
+                 return -intValue;
+        }
+ 	}
+
+	public int getRightEncoderPosition() {
+		int intValue;
+		switch (RobotConstants.encodermode) {
+        case 0:  intValue = -(int) rightEncoder.get() *4;
+                 return -intValue;
+        case 1:  lencodetemp = lencodetemp +3;  
+                 return lencodetemp;
+        default: intValue = -(int) rightEncoder.get() *4;
+                 return -intValue;
+		}
+	}
 	
 	public void displayChasisData() {
 		// These are the new encoders
