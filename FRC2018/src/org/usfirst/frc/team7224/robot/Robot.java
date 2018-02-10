@@ -8,6 +8,7 @@
 package org.usfirst.frc.team7224.robot;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.livewindow.*;
 import edu.wpi.first.wpilibj.command.Command;
@@ -49,8 +50,10 @@ public class Robot extends TimedRobot {
 	        = new Shifter();
 	public static OI oi;
 
-	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	Command autonomousCommand;
+	SendableChooser<Command> autoChooser;
+	CameraServer server;
+	
 	
 
 //	    public static Pneumatics pneumatics;
@@ -66,9 +69,9 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		Command autonomousCommand;
-		SendableChooser<Command> autoChooser;
-		CameraServer server;
+	//	Command autonomousCommand;
+	//	SendableChooser<Command> autoChooser;
+		
 
 
 		LiveWindow.disableAllTelemetry();
@@ -77,14 +80,24 @@ public class Robot extends TimedRobot {
 	      autoChooser = new SendableChooser();
 	      autoChooser.addObject("Do Nothing", new AutonomousDoNothing());
 		  autoChooser.addObject("Drive Forward", new AutonomousDriveForward());
-		  autoChooser.addObject("AutoSelect", new AutonomousAutoSelect());
+		  autoChooser.addDefault("AutoSelect", new AutonomousAutoSelect());
 		  SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 		 
 	      server = CameraServer.getInstance();
 		  server.startAutomaticCapture(0);
 		  server.startAutomaticCapture(1);
-
-	}
+		  
+/*		  DriverStation.Alliance color;
+		  color = DriverStation.getInstance().getAlliance();
+			String gameData;
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
+			if(gameData.charAt(0) == 'L')
+			{
+				//Put left auto code here
+			} else {
+				//Put right auto code here
+			}
+*/	}
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
@@ -114,7 +127,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
+		autonomousCommand = autoChooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -124,8 +137,8 @@ public class Robot extends TimedRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
+		if (autonomousCommand != null) {
+			autonomousCommand.start();
 		}
 	}
 
@@ -143,8 +156,8 @@ public class Robot extends TimedRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.cancel();
+		if (autonomousCommand != null) {
+			autonomousCommand.cancel();
 		}
 	}
 

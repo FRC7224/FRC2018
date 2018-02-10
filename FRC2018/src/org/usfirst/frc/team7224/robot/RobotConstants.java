@@ -20,10 +20,9 @@ public class RobotConstants {
 	public static double DEADZONE = 0.1; // updated by MG
 	public static int Clawbutton = 1;
 	public static int Shiftbutton = 2;
-
-	public static int Arm_FieldHT = 5;
-	public static int Arm_SwitchHT = 6;
-	public static int Arm_ScaleHT = 7; 
+	public static int Arm_FieldHTbutton = 5;
+	public static int Arm_SwitchHTbutton = 6;
+	public static int Arm_ScaleHTbutton = 7; 
 	
 	// Chassis Constants
 	public static boolean enablePID = true;
@@ -36,31 +35,33 @@ public class RobotConstants {
 	public static double shiftRateDown = 800;
 	public static boolean shiftOpenState = false;
 	
-	/**  arm constants
-	 * Which PID slot to pull gains from.  Starting 2018, you can choose 
-	 * from 0,1,2 or 3.  Only the first two (0,1) are visible in web-based configuration.
-	 */
+	// Arm Constants
 	public static final int kSlotIdx = 0;
-		/* Talon SRX/ Victor SPX will supported multiple (cascaded) PID loops.  
-	 * For now we just want the primary one.
-	 */
 	public static final int kPIDLoopIdx = 0;
-	/*
-	 * set to zero to skip waiting for confirmation, set to nonzero to wait
-	 * and report to DS if action fails.
-	 */
 	public static final int kTimeoutMs = 10;
+	public static final double kMaxSpeed = 0.2;
+	public static final double kStopSpeed = 0.0;
+	public static double targetPositionRotations;
+	public static double kArmManualSensitivity = 500;
+	public static double kArm_FieldHT = 1000;
+	public static double kArm_SwitchHT = 20000;
+	public static double kArm_ScaleHT = 100000; 
+	public static double kArmMinHt = 0;
+	public static double kArmMaxHt = 500000;
+	public static double kArmPIDF = 0.0;
+	public static double kArmPIDP = 0.1;
+	public static double kArmPIDI = 0.0;
+	public static double kArmPIDD = 0.0;
 	
-	
+		
 	// Claw constants
-
 	public static boolean clawOpenState = false;
 	public static double closeTimer_timer = .3;
 
 	// Autonomous Constants
 	public static int TrajectorySegments;
 	public static boolean isTrajectory = false;
-	public static int encodermode = 0;
+	public static int encodermode = 1;
 
 /*	***************** Old robot  *************************
  * public static boolean last = true;

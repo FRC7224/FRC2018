@@ -34,8 +34,6 @@ public class AutonomousTrajectoryFollowerTwoPointFixMoveFile extends Command {
         
         public AutonomousTrajectoryFollowerTwoPointFixMoveFile(int autofilenum, boolean driveforward, double maxtime) {
             requires(Robot.chassis);
-//  	        waypoints[0] = new Waypoint(x0 * inchesToMeter, y0 * inchesToMeter, Math.toRadians(d0)); 
-//            waypoints[1] = new Waypoint(x1 * inchesToMeter, y1 * inchesToMeter, Math.toRadians(d1));
             drivef = driveforward;
             autofile = autofilenum;
             maxtimeout = maxtime;
@@ -52,21 +50,21 @@ public class AutonomousTrajectoryFollowerTwoPointFixMoveFile extends Command {
               Robot.chassis.resetEncoders();
               RobotConstants.TrajectorySegments = 0; 
               //  Example   
-              // Waypoint[] points = new Waypoint[] {
-              //  	    new Waypoint(-4, -1, Pathfinder.d2r(-45)),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
-              //  	    new Waypoint(-2, -2, 0),                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
-              //  	    new Waypoint(0, 0, 0)                           // Waypoint @ x=0, y=0,   exit angle=0 radians
-              //  	};
+               Waypoint[] points = new Waypoint[] {
+                	    new Waypoint(-4, -1, Pathfinder.d2r(-45)),      // Waypoint @ x=-4, y=-1, exit angle=-45 degrees
+               	    new Waypoint(-2, -2, 0),                        // Waypoint @ x=-2, y=-2, exit angle=0 radians
+               	    new Waypoint(0, 0, 0)                           // Waypoint @ x=0, y=0,   exit angle=0 radians
+                	};
               //    
               //       Waypoint[] points = new Waypoint[]{
               //         		new Waypoint(0,0, Pathfinder.d2r(0)),
               //          		new Waypoint(5,0, Pathfinder.d2r(0))
               //  		   		}; 
            
- // ***                 Waypoint[] points = waypoints;
+    //             Waypoint[] points = waypoints;
               
-                 //               Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC,
-                 //      		Trajectory.Config.SAMPLES_LOW, 0.05, 8.0, 2.0, 60.0);
+      //                          Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC,
+     //                 		Trajectory.Config.SAMPLES_LOW, 0.05, 8.0, 2.0, 60.0);
                    // Prepare the Trajectory for Generation.
                    //
                    // Arguments: 
@@ -78,16 +76,16 @@ public class AutonomousTrajectoryFollowerTwoPointFixMoveFile extends Command {
                    // Max Velocity:        15 m/s
                    // Max Acceleration:    10 m/s/s
                    // Max Jerk:            60 m/s/s/s
-   //                  Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,0.05, .35, .3, .4);
-      // ***             Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,0.05, .60, .3, .4);             
+                    Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,0.05, .35, .3, .4);
+ //                  Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,0.05, .60, .3, .4);             
                    //Next Line causes crash if the Waypoints are not set correctly!!!!
-       // ***           Trajectory trajectory = Pathfinder.generate(points, config);
-        //          File myFile = new File("/home/lvuser/fix18inch.csv");
-        //          Pathfinder.writeToCSV(myFile, trajectory);
-          //           File myFile = new File("/home/lvuser/fix18inch.traj");
-         //            Pathfinder.writeToFile(myFile, trajectory);
+                  Trajectory trajectory = Pathfinder.generate(points, config);
+                 File myFile = new File("/home/lvuser/fix18inch.csv");
+                Pathfinder.writeToCSV(myFile, trajectory);
+      //               File myFile2 = new File("/home/lvuser/fix18inch.traj");
+     //              Pathfinder.writeToFile(myFile2, trajectory);
                            
-                  String fileString;
+    /*              String fileString;
                   switch (autofile) {
                   case 0:  fileString = "/home/lvuser/autoleft.traj";                          
                            break;
@@ -102,16 +100,16 @@ public class AutonomousTrajectoryFollowerTwoPointFixMoveFile extends Command {
                   default: fileString = "/home/lvuser/fix18inch.traj"; 
                            break;
                   }
-                  
+                
                   File myFile = new File (fileString);
                   Trajectory trajectory = Pathfinder.readFromFile(myFile);
-                  
-         //        File myFile = new File("fix18inch.csv");
-          //      Trajectory trajectory = Pathfinder.readFromCSV(myFile);
+    */                
+       //         File myFile = new File("fix18inch.csv");
+        //        Trajectory trajectory = Pathfinder.readFromCSV(myFile);
            //     File myFile = new File("/home/lvuser/fix18inch.traj");
           //      Trajectory trajectory = Pathfinder.readFromFile(myFile);
 
-                 double wheelbase_width =  .82; // MG updated
+                 double wheelbase_width =  .66; // MG updated
 
                    // Create the Modifier Object
                   TankModifier modifier = new TankModifier(trajectory).modify(wheelbase_width);
@@ -123,15 +121,15 @@ public class AutonomousTrajectoryFollowerTwoPointFixMoveFile extends Command {
                 // Encoder Position is the current, cumulative position of your encoder. 
                 //  If you're using an SRX, this will be the
                 // 'getEncPosition' function.
-                // 100 is the amount of encoder ticks per full revolution
-                // 20 ticks per rev * 5:1 gear ratio = 100 
+                // 1440 is the amount of encoder ticks per full revolution
+                // 1440 ticks per rev * 3:1 gear ratio *4x = 1920
                 // Wheel Diameter is the diameter of your wheels (or pulley for a track system) in meters
-                // 4" * .0254 = .1016
+                // 6" * .0254 = .1524
+                  
 
-                    left.configureEncoder(Robot.chassis.getLeftEncoderPosition(), 400, 0.1016);
-                    right.configureEncoder(Robot.chassis.getRightEncoderPosition(), 400, 0.1016);
-   
-                   
+                    left.configureEncoder(Robot.chassis.getLeftEncoderPosition(), 1920, 0.1524);
+                    right.configureEncoder(Robot.chassis.getRightEncoderPosition(), 1920, 0.1524);
+                     
                    
                   
                 // The first argument is the proportional gain. Usually this will be quite high
@@ -169,8 +167,7 @@ public class AutonomousTrajectoryFollowerTwoPointFixMoveFile extends Command {
                        public void run() {
                    	   lasttime = edu.wpi.first.wpilibj.Timer.getFPGATimestamp();
                    	   timelapse = edu.wpi.first.wpilibj.Timer.getFPGATimestamp() - lasttime;
-                           if  (!left.isFinished() || !right.isFinished()) {
-                               if (drivef) {  // normal forward mode     
+                           if  (!left.isFinished() || !right.isFinished()) {                     
                             	  l=0;
                             	  r=0;
                     	          l = left.calculate(Robot.chassis.getLeftEncoderPosition()) ;
@@ -182,30 +179,15 @@ public class AutonomousTrajectoryFollowerTwoPointFixMoveFile extends Command {
                                   Robot.chassis.setLeftRightMotorOutputs(-(l + turn),-(r - turn));
                                 	SmartDashboard.putNumber("r  ",r );
                                   	SmartDashboard.putNumber("l ",l);
-                //                  SmartDashboard.putNumber("tra head", desired_heading);
-                //                 SmartDashboard.putNumber("tra angle Difference", angleDifference);
-                //                  SmartDashboard.putNumber("tra gyro 2", Robot.chassis.getGyroAngle());
-                //                  SmartDashboard.putDouble("tra right", -(r - turn));
-                //                  SmartDashboard.putDouble("tra left", -(l + turn));  
+                                 SmartDashboard.putNumber("tra head", desired_heading);
+                                 SmartDashboard.putNumber("tra angle Difference", angleDifference);
+                                  SmartDashboard.putNumber("tra gyro 2", Robot.chassis.getGyroAngle());
+                             //     SmartDashboard.putDouble("tra right", -(r - turn));
+                             //     SmartDashboard.putDouble("tra left", -(l + turn));  
                                 SmartDashboard.putNumber("tra encoder right", Robot.chassis.getRightEncoderPosition());
                                   SmartDashboard.putNumber("tra encodeer left", Robot.chassis.getLeftEncoderPosition()); 
-                                  
-                               } else {  // reverse mode only use for backwards
-                                   double l = left.calculate(-Robot.chassis.getLeftEncoderPosition()) ;
-                                   double r = right.calculate(-Robot.chassis.getRightEncoderPosition()) ;
-                                   double gyro_heading = Robot.chassis.getGyroAngle();   // Assuming the gyro is giving a value in degrees
-                                   double desired_heading = -Pathfinder.r2d(left.getHeading());  // Should also be in degrees
-                      	           double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
-                                   double turn = 0.8 * (-1.0/80.0) * angleDifference;
-                                   Robot.chassis.tankDrive((l + turn),(r - turn)); 
-                  //                  SmartDashboard.putNumber("tra head", desired_heading);
-                 //                 SmartDashboard.putNumber("tra angle Difference", angleDifference);
-                //                   SmartDashboard.putNumber("tra gyro 2", -Robot.chassis.getGyroAngle());
-                  //                 SmartDashboard.putDouble("tra right", (r - turn));
-                 //                  SmartDashboard.putDouble("tra left", (l + turn));  
-                 //                  SmartDashboard.putNumber("tra encoder right", -Robot.chassis.getRightEncoderPosition());
-                 //                  SmartDashboard.putNumber("tra encodeer left", -Robot.chassis.getLeftEncoderPosition()); 
-                                     }
+                               
+
                             } else {
                         	   Robot.chassis.tankDrive(0,0);
                        //        left.reset();

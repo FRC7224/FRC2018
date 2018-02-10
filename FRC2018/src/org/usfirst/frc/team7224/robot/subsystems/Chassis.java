@@ -41,7 +41,8 @@ public class Chassis extends PIDSubsystem {
 
 	private boolean turning = true;
 	Timer setPointTimer = new Timer();
-	public int lencodetemp = 1;
+	public int lencodeSim = 1;
+	public int rencodeSim = 1;
 
 
 	public void initDefaultCommand() {
@@ -96,6 +97,8 @@ public class Chassis extends PIDSubsystem {
 		public void resetEncoders() {
 		leftEncoder.reset();
 		rightEncoder.reset();
+		lencodeSim = 1;
+		rencodeSim = 1;
 	    }
 		
 		
@@ -219,11 +222,11 @@ public class Chassis extends PIDSubsystem {
  	public int getLeftEncoderPosition() {
 		int intValue;
 		switch (RobotConstants.encodermode) {
-        case 0:  intValue = -(int) leftEncoder.get() *4;
+        case 0:  intValue = (int) leftEncoder.get();
                  return -intValue;
-        case 1:  lencodetemp = lencodetemp +3;  
-                 return lencodetemp;
-        default: intValue = -(int) leftEncoder.get() *4;
+        case 1:  lencodeSim = lencodeSim +3;  
+                 return lencodeSim;
+        default: intValue = (int) leftEncoder.get();
                  return -intValue;
         }
  	}
@@ -233,8 +236,8 @@ public class Chassis extends PIDSubsystem {
 		switch (RobotConstants.encodermode) {
         case 0:  intValue = -(int) rightEncoder.get() *4;
                  return -intValue;
-        case 1:  lencodetemp = lencodetemp +3;  
-                 return lencodetemp;
+        case 1:  rencodeSim = rencodeSim +3;  
+                 return rencodeSim;
         default: intValue = -(int) rightEncoder.get() *4;
                  return -intValue;
 		}
