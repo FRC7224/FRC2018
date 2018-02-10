@@ -24,6 +24,7 @@ import org.usfirst.frc.team7224.robot.commands.AutonomousCommand;
 import org.usfirst.frc.team7224.robot.subsystems.Arm;
 import org.usfirst.frc.team7224.robot.subsystems.Chassis;
 import org.usfirst.frc.team7224.robot.subsystems.Claw;
+import org.usfirst.frc.team7224.robot.subsystems.Intake;
 
 
 
@@ -42,7 +43,9 @@ public class Robot extends TimedRobot {
             = new Arm(); 
 	public static final Pneumatics pneumatics
             = new Pneumatics(); 
-	public static final Winch winch
+	public static final Intake intake
+	        = new Intake();
+    public static final Winch winch
 	        = new Winch();
 	public static final Claw claw
 	        = new Claw();

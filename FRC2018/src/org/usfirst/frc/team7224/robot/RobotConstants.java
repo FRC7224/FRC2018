@@ -23,6 +23,8 @@ public class RobotConstants {
 	public static int Arm_FieldHTbutton = 5;
 	public static int Arm_SwitchHTbutton = 6;
 	public static int Arm_ScaleHTbutton = 7; 
+	public static int kWinchButtonA = 9;
+	public static int kWinchButtonB = 10;
 	
 	// Chassis Constants
 	public static boolean enablePID = true;
@@ -64,6 +66,16 @@ public class RobotConstants {
 	public static boolean isTrajectory = false;
 	public static int encodermode = 1;
 
+	// Winch constants
+	public static double kmaxWinchSpeed = 0.2;
+	public static double kminWinchSpeed = 0.0;
+	public static boolean WinchState = false;
+	
+	// Winch constants
+	public static double kmaxIntakeSpeed =  0.2;
+	public static double kminIntakeSpeed = -0.2;
+
+	
 /*	***************** Old robot  *************************
  * public static boolean last = true;
  
