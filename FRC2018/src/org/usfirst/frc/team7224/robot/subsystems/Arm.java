@@ -28,6 +28,7 @@ public class Arm extends Subsystem {
 	        /* choose the sensor and sensor direction */
 	        arm.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, RobotConstants.kPIDLoopIdx, RobotConstants.kTimeoutMs);
 	        arm.setSensorPhase(true);
+	       
 	        
 	        /* set the peak and nominal output */
 	        arm.configNominalOutputForward(RobotConstants.kStopSpeed, RobotConstants.kTimeoutMs);
@@ -37,8 +38,9 @@ public class Arm extends Subsystem {
 	        /* set the allowable closed-loop error,
 	         * Closed-Loop output will be neutral within this range.
 	         * See Table in Section 17.2.1 for native units per rotation. 
+	         * 
 	         */
-	        arm.configAllowableClosedloopError(0, RobotConstants.kPIDLoopIdx, RobotConstants.kTimeoutMs); /* always servo */
+	        arm.configAllowableClosedloopError( RobotConstants.kPIDLoopIdx,RobotConstants.kallowableCloseLoopError, RobotConstants.kTimeoutMs); /* always servo */
 	        /* set closed loop gains in slot0 */
 	        arm.config_kF(RobotConstants.kPIDLoopIdx,RobotConstants.kArmPIDF, RobotConstants.kTimeoutMs);
 	        arm.config_kP(RobotConstants.kPIDLoopIdx, RobotConstants.kArmPIDP, RobotConstants.kTimeoutMs);

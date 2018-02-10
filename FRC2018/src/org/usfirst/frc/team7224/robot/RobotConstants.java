@@ -37,6 +37,7 @@ public class RobotConstants {
 	
 	// Arm Constants
 	public static final int kSlotIdx = 0;
+	public static final int kallowableCloseLoopError = 100;
 	public static final int kPIDLoopIdx = 0;
 	public static final int kTimeoutMs = 10;
 	public static final double kMaxSpeed = 0.2;
@@ -50,7 +51,7 @@ public class RobotConstants {
 	public static double kArmMaxHt = 500000;
 	public static double kArmPIDF = 0.0;
 	public static double kArmPIDP = 0.1;
-	public static double kArmPIDI = 0.0;
+	public static double kArmPIDI = 0.00005;
 	public static double kArmPIDD = 0.0;
 	
 		
