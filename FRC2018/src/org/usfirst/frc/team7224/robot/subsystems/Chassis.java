@@ -4,17 +4,17 @@ package org.usfirst.frc.team7224.robot.subsystems;
  
  import edu.wpi.first.wpilibj.command.PIDSubsystem;
  import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
  import com.ctre.phoenix.motorcontrol.ControlMode;
  import com.ctre.phoenix.motorcontrol.NeutralMode;
  import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
  import edu.wpi.first.wpilibj.ADXRS450_Gyro;
  import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.Timer;
+ import edu.wpi.first.wpilibj.Timer;
+
+ import org.usfirst.frc.team7224.robot.Robot;
  import org.usfirst.frc.team7224.robot.RobotConstants;
  import org.usfirst.frc.team7224.robot.RobotMap;
-import org.usfirst.frc.team7224.robot.commands.*;
+ import org.usfirst.frc.team7224.robot.commands.*;
 
  
  
@@ -35,7 +35,6 @@ public class Chassis extends PIDSubsystem {
     
 	private final ADXRS450_Gyro gyro = RobotMap.spiGyro_1;
 
-	private final Solenoid shifter = RobotMap.pneumaticsSolenoid0;
 	private final Encoder leftEncoder = RobotMap.leftEncoder;
 	private final Encoder rightEncoder = RobotMap.rigthEncoder;
 
@@ -58,7 +57,7 @@ public class Chassis extends PIDSubsystem {
     // 		public PIDSubsystem(java.lang.String name, double p,
     //	                    double i,
     //	                    double d)
-    		setAbsoluteTolerance(RobotConstants.gyroPIDErrorTolerance);
+    		setAbsoluteTolerance(RobotConstants.kgyroPIDErrorTolerance);
     		getPIDController().setInputRange(-180, 180);
     		getPIDController().setContinuous(true);
     		getPIDController().setOutputRange(-1.0, 1.0);
@@ -76,7 +75,6 @@ public class Chassis extends PIDSubsystem {
    	protected void usePIDOutput(double output) { // Get PID Output value
     		// NOT Used - in code to create PID thread
     		// Use output to drive your system, like a motor
-   	  SmartDashboard.putNumber("pidout",output);
    		RobotConstants.gyroPIDOutput = output;
    	}
     
@@ -147,7 +145,7 @@ public class Chassis extends PIDSubsystem {
  	
 	public double deadZone(double input) {
 		double d = Math.abs(input);
-		if (d < RobotConstants.DEADZONE) {
+		if (d < RobotConstants.kdeadzone) {
 			return 0.0;
 		}
 		return input;
@@ -155,7 +153,7 @@ public class Chassis extends PIDSubsystem {
  	
  	public void arcadeDrive(double forward, double turn) {
 
-		if (RobotConstants.enablePID == true) { // use PID process
+		if (RobotConstants.kenablePID == true) { // use PID process
 			// **********************************************************
 			// *   PID Proccessing  
 			// *
@@ -200,28 +198,17 @@ public class Chassis extends PIDSubsystem {
 	   } // End of PID enable loop\
  	
 	 public void autoshift() {
-         // opens shifter
-			if (-leftEncoder.getRate() >  RobotConstants.shiftRateUp) {
-				closeShifter();
-			} else
-				if (-leftEncoder.getRate() <  RobotConstants.shiftRateDown) {
-				openShifter();
+         // auto down shift only 
+    	if ((RobotConstants.shiftOpenState = true) &&
+    		(Math.abs(leftEncoder.getRate()) <  RobotConstants.kshiftRateDown)) {
+				Robot.shifter.closeShifter();
 			}
      }
  		
-  	 public void openShifter() {
-         // opens shifter
-         //	shifter.set(true);
-     }
-
-     public void closeShifter() {
-           // closes shifter
-     	 //  shifter.set(false);
-     }
-     
+      
  	public int getLeftEncoderPosition() {
 		int intValue;
-		switch (RobotConstants.encodermode) {
+		switch (RobotConstants.kencodermode) {
         case 0:  intValue = (int) leftEncoder.get();
                  return -intValue;
         case 1:  lencodeSim = lencodeSim +3;  
@@ -233,7 +220,7 @@ public class Chassis extends PIDSubsystem {
 
 	public int getRightEncoderPosition() {
 		int intValue;
-		switch (RobotConstants.encodermode) {
+		switch (RobotConstants.kencodermode) {
         case 0:  intValue = -(int) rightEncoder.get() *4;
                  return -intValue;
         case 1:  rencodeSim = rencodeSim +3;  
@@ -303,7 +290,7 @@ public class Chassis extends PIDSubsystem {
 
 	public void arcade(double moveValue, double rotateValue) {
 
-		boolean squaredInputs = false;
+		boolean squaredInputs = true;
 		moveValue = limit(moveValue);
 		rotateValue = limit(rotateValue);
 		if (squaredInputs) {

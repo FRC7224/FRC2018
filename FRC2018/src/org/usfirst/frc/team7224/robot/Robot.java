@@ -84,17 +84,11 @@ public class Robot extends TimedRobot {
 		  SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 		 
 	      server = CameraServer.getInstance();
-		  server.startAutomaticCapture(0);
-		  server.startAutomaticCapture(1);
+//		  server.startAutomaticCapture(0);
+//		  server.startAutomaticCapture(1);
 		  
      	 
-	/*		if(gameData.charAt(0) == 'L')
-			{
-				//Put left auto code here
-			} else {
-				//Put right auto code here
-	*/		}
-	
+	}	
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.

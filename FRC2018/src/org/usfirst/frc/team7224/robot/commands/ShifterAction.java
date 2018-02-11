@@ -36,8 +36,8 @@ public class ShifterAction extends Command {
 		
 
 		
-	    // ****************************** claw *******************************************
-		if (Robot.oi.joystick1.getRawButton(RobotConstants.Shiftbutton)) {
+	    // ****************************** Shifter *******************************************
+		if (Robot.oi.joystick1.getRawButton(RobotConstants.kshiftbutton)) {
 			if (closeTimer.get() == 0) {
 				if (RobotConstants.shiftOpenState == false) {
 					RobotConstants.shiftOpenState = true;
@@ -52,13 +52,13 @@ public class ShifterAction extends Command {
 			closeTimer.start();
 		} // End joystick check
 
-		if (closeTimer.get() >= RobotConstants.closeTimer_timer) {
+		if (closeTimer.get() >= RobotConstants.kcloseTimer_timer) {
 			closeTimer.stop();
 			closeTimer.reset();
 		}
 
 	
-	SmartDashboard.putBoolean("claw end", RobotConstants.shiftOpenState);
+	SmartDashboard.putBoolean("Shifter", RobotConstants.shiftOpenState);
 
 	
 	} // end exectute

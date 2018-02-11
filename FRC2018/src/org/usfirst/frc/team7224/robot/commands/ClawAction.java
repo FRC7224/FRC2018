@@ -37,7 +37,7 @@ public class ClawAction extends Command {
 
 		
 	    // ****************************** claw *******************************************
-		if (Robot.oi.joystick1.getRawButton(RobotConstants.Clawbutton)) {
+		if (Robot.oi.joystick1.getRawButton(RobotConstants.kclawbutton)) {
 			if (closeTimer.get() == 0) {
 				if (RobotConstants.clawOpenState == false) {
 					Robot.claw.openClaw();
@@ -51,7 +51,7 @@ public class ClawAction extends Command {
 			closeTimer.start();
 		} // End joystick check
 
-		if (closeTimer.get() >= RobotConstants.closeTimer_timer) {
+		if (closeTimer.get() >= RobotConstants.kclawcloseTimer_timer) {
 			closeTimer.stop();
 			closeTimer.reset();
 		}

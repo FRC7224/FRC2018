@@ -28,13 +28,13 @@
 
 	        public void openShifter() {
 	        //
-	        // opens claw
+	        // opens shifter/put in high gear
 	        	OpenCloseShifter.set(true);
 	    }
 
 	    public void closeShifter() {
 	        //
-	        // closes claw
+	        // closes shifter/put in low gare
 	    	   OpenCloseShifter.set(false);
 	    }
 	}
