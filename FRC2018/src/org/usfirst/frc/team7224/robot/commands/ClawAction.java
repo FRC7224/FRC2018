@@ -40,12 +40,11 @@ public class ClawAction extends Command {
 		if (Robot.oi.joystick1.getRawButton(RobotConstants.Clawbutton)) {
 			if (closeTimer.get() == 0) {
 				if (RobotConstants.clawOpenState == false) {
-					RobotConstants.clawOpenState = true;
 					Robot.claw.openClaw();
 
 				} else { // If the shooter mode was on then toggle off
 					Robot.claw.closeClaw();
-					RobotConstants.clawOpenState = false;
+					
 				} // end sate check
 			} // end timer
 				// Start Timer to make sure the toggle happens only once

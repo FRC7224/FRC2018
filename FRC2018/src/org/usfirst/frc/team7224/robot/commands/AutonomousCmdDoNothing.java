@@ -6,10 +6,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutonomousDoNothing extends Command {
+public class AutonomousCmdDoNothing extends Command {
 
 
-    public AutonomousDoNothing() {
+    public AutonomousCmdDoNothing() {
 
 
     }

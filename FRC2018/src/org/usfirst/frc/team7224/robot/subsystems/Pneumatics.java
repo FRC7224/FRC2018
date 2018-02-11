@@ -1,7 +1,7 @@
 package org.usfirst.frc.team7224.robot.subsystems;
 
 import org.usfirst.frc.team7224.robot.RobotMap;
-import org.usfirst.frc.team7224.robot.commands.TeleopPneumatics;
+import org.usfirst.frc.team7224.robot.commands.PneumaticsStart;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -22,7 +22,7 @@ public class Pneumatics extends Subsystem {
    public void initDefaultCommand() {
 
 
-       setDefaultCommand(new TeleopPneumatics());
+       setDefaultCommand(new PneumaticsStart());
 
 
        // Set the default command for a subsystem here.

@@ -3,9 +3,9 @@ package org.usfirst.frc.team7224.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class AutonomousAutoSelect extends CommandGroup{
+public class AutonomousGrpRightAutoSelect extends CommandGroup{
 	
-	public AutonomousAutoSelect(){
+	public AutonomousGrpRightAutoSelect(){
 		   /// Drive to Gear
 //	    addSequential(new AutonomousCommandClaw(false)); // open claw door
 //		addSequential(new AutonomousCommandLights(true)); // turn on vision lights

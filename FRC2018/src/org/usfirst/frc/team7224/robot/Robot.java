@@ -20,7 +20,7 @@ import org.usfirst.frc.team7224.robot.subsystems.Pneumatics;
 import org.usfirst.frc.team7224.robot.subsystems.Shifter;
 import org.usfirst.frc.team7224.robot.subsystems.Winch;
 import org.usfirst.frc.team7224.robot.OI;
-import org.usfirst.frc.team7224.robot.commands.AutonomousCommand;
+import org.usfirst.frc.team7224.robot.commands.AutonomousCmd;
 import org.usfirst.frc.team7224.robot.subsystems.Arm;
 import org.usfirst.frc.team7224.robot.subsystems.Chassis;
 import org.usfirst.frc.team7224.robot.subsystems.Claw;
@@ -57,13 +57,6 @@ public class Robot extends TimedRobot {
 	SendableChooser<Command> autoChooser;
 	CameraServer server;
 	
-	
-
-//	    public static Pneumatics pneumatics;
-//        public static Chassis chassis;
-  //      public static Arm arm;
-//	    public static Claw claw;
-//	    public static Winch winch;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -81,26 +74,27 @@ public class Robot extends TimedRobot {
  
         
 	      autoChooser = new SendableChooser();
-	      autoChooser.addObject("Do Nothing", new AutonomousDoNothing());
-		  autoChooser.addObject("Drive Forward", new AutonomousDriveForward());
-		  autoChooser.addDefault("AutoSelect", new AutonomousAutoSelect());
+
+		  autoChooser.addObject("Left Start Auto Select", new AutonomousGrpLeftAutoSelect());
+		  autoChooser.addObject("Center Start Auto Select", new AutonomousGrpCenterAutoSelect());
+		  autoChooser.addObject("Right Start Auto Select", new AutonomousGrpRightAutoSelect());
+	      autoChooser.addObject("xx Do Nothing", new AutonomousCmdDoNothing());
+		  autoChooser.addObject("xx Drive Forward", new AutonomousGrpDriveForward());
+		  autoChooser.addDefault("xx File Generator", new AutonomousGrpFileGenerator());
 		  SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 		 
 	      server = CameraServer.getInstance();
 		  server.startAutomaticCapture(0);
 		  server.startAutomaticCapture(1);
 		  
-/*		  DriverStation.Alliance color;
-		  color = DriverStation.getInstance().getAlliance();
-			String gameData;
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-			if(gameData.charAt(0) == 'L')
+     	 
+	/*		if(gameData.charAt(0) == 'L')
 			{
 				//Put left auto code here
 			} else {
 				//Put right auto code here
-			}
-*/	}
+	*/		}
+	
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
@@ -130,16 +124,10 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		RobotConstants.gameData = DriverStation.getInstance().getGameSpecificMessage();
 		autonomousCommand = autoChooser.getSelected();
 
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
+		// schedule the autonomous command 
 		if (autonomousCommand != null) {
 			autonomousCommand.start();
 		}

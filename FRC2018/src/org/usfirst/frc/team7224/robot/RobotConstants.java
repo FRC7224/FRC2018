@@ -74,7 +74,10 @@ public class RobotConstants {
 	// Winch constants
 	public static double kmaxIntakeSpeed =  0.2;
 	public static double kminIntakeSpeed = -0.2;
-
+	
+	// Driverstation
+	public static String gameData;
+	
 	
 /*	***************** Old robot  *************************
  * public static boolean last = true;

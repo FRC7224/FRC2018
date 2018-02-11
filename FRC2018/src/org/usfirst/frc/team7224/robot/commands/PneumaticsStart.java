@@ -14,10 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class TeleopPneumatics extends Command {
+public class PneumaticsStart extends Command {
 
 
-    public TeleopPneumatics() {
+    public PneumaticsStart() {
         requires(Robot.pneumatics);
     }
 
