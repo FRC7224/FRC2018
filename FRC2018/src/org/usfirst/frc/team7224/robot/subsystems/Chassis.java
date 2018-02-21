@@ -37,6 +37,7 @@ public class Chassis extends PIDSubsystem {
 
 	private final Encoder leftEncoder = RobotMap.leftEncoder;
 	private final Encoder rightEncoder = RobotMap.rigthEncoder;
+	
 
 	private boolean turning = true;
 	Timer setPointTimer = new Timer();
@@ -65,7 +66,7 @@ public class Chassis extends PIDSubsystem {
     		gyro.calibrate();
   		         	}
    
-      protected double returnPIDInput() {
+     protected double returnPIDInput() {
 		// Used - in code to create PID thread
 		// Return your input value for the PID loop
     	
@@ -92,7 +93,7 @@ public class Chassis extends PIDSubsystem {
 		}
 	}
     
-		public void resetEncoders() {
+	public void resetEncoders() {
 		leftEncoder.reset();
 		rightEncoder.reset();
 		lencodeSim = 1;
@@ -104,6 +105,11 @@ public class Chassis extends PIDSubsystem {
 		return gyro.getAngle();
 	}
  
+	public  void resetgyro() {
+		gyro.reset();
+		
+	}
+	
     
  // setup
  	public void setupDrive() {
@@ -119,6 +125,7 @@ public class Chassis extends PIDSubsystem {
  		gyro.reset();
  		getPIDController().setSetpoint(0); // make setpoint current angle
  		getPIDController().enable();
+ 		resetEncoders();
  		brakemode (false);
 
  	}
@@ -199,33 +206,33 @@ public class Chassis extends PIDSubsystem {
  	
 	 public void autoshift() {
          // auto down shift only 
-    	if ((RobotConstants.shiftOpenState = true) &&
-    		(Math.abs(leftEncoder.getRate()) <  RobotConstants.kshiftRateDown)) {
-				Robot.shifter.closeShifter();
-			}
+   // 	if ((RobotConstants.shiftOpenState = true) &&
+   // 		(Math.abs(leftEncoder.getRate()) <  RobotConstants.kshiftRateDown)) {
+	//			Robot.shifter.closeShifter();
+	//		}
      }
  		
       
  	public int getLeftEncoderPosition() {
-		int intValue;
+		int intValue = 0;
 		switch (RobotConstants.kencodermode) {
         case 0:  intValue = (int) leftEncoder.get();
-                 return -intValue;
+                 return intValue;
         case 1:  lencodeSim = lencodeSim +3;  
                  return lencodeSim;
         default: intValue = (int) leftEncoder.get();
-                 return -intValue;
+                 return intValue;
         }
  	}
 
 	public int getRightEncoderPosition() {
-		int intValue;
+		int intValue = 0;
 		switch (RobotConstants.kencodermode) {
-        case 0:  intValue = -(int) rightEncoder.get() *4;
-                 return -intValue;
+        case 0:  intValue = (int) rightEncoder.get();
+                 return intValue;
         case 1:  rencodeSim = rencodeSim +3;  
                  return rencodeSim;
-        default: intValue = -(int) rightEncoder.get() *4;
+        default: intValue = -(int) rightEncoder.get();
                  return -intValue;
 		}
 	}
@@ -244,7 +251,7 @@ public class Chassis extends PIDSubsystem {
 	
 	
 	public void setLeftRightMotorOutputs(double leftOutput, double rightOutput) {
-	    left2.set(limit(leftOutput));
+	    left2.set(limit(-leftOutput));
 	    right2.set(limit(rightOutput));
 		// SmartDashboard.putNumber("right output ",limit(-rightOutput) );
 		// SmartDashboard.putNumber("left output ",limit(leftOutput) );

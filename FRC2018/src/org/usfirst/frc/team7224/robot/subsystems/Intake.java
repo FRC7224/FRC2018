@@ -8,14 +8,16 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 /**
 *
 */
 public class Intake extends Subsystem {
 
 
-   private final WPI_TalonSRX intakemotor1 = RobotMap.intakeTalonSRX9;
-   private final WPI_TalonSRX intakemotor2 = RobotMap.intakeTalonSRX10;
+   private final WPI_VictorSPX intakemotor1 = RobotMap.intakeTalonSRX9;
+   private final WPI_VictorSPX intakemotor2 = RobotMap.intakeTalonSRX10;
 
 
    public void initDefaultCommand() {
@@ -31,8 +33,8 @@ public class Intake extends Subsystem {
     * sets the ball motor speed  -1 to +1
     */
    public void setIntakeMotor(double ispeed) {
-	   intakemotor1.set(ispeed);
-	   intakemotor2.set(ispeed); 
+	   intakemotor1.set(ControlMode.PercentOutput,-ispeed);
+	   intakemotor2.set(ControlMode.PercentOutput,ispeed);
 	  }
    
 

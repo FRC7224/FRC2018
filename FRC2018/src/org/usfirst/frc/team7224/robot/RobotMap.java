@@ -13,6 +13,11 @@ package org.usfirst.frc.team7224.robot;
 
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.CANTalon;
+import com.ctre.phoenix.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -40,8 +45,8 @@ public class RobotMap {
     public static WPI_TalonSRX chassisTalonSRX1 = new WPI_TalonSRX(1);
     public static WPI_TalonSRX armTalonSRX7 = new WPI_TalonSRX(7);
     public static WPI_TalonSRX winchTalonSRX8  = new WPI_TalonSRX(8);
-    public static WPI_TalonSRX intakeTalonSRX9= new WPI_TalonSRX(9);
-    public static WPI_TalonSRX intakeTalonSRX10  = new WPI_TalonSRX(10); 
+    public static WPI_VictorSPX intakeTalonSRX9= new WPI_VictorSPX(9);
+    public static WPI_VictorSPX intakeTalonSRX10  = new WPI_VictorSPX(10); 
 	public static Encoder rigthEncoder = new Encoder(new DigitalInput(0), new DigitalInput(1), false, Encoder.EncodingType.k4X);
 	public static Encoder leftEncoder = new Encoder(new DigitalInput(2), new DigitalInput(3), true, Encoder.EncodingType.k4X);
     public static ADXRS450_Gyro spiGyro_1  = new ADXRS450_Gyro();

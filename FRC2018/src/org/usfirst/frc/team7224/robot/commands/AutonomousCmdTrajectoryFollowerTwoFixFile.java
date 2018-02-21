@@ -48,7 +48,6 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
               String fileString;
               RobotConstants.isTrajectory = true;
               Robot.chassis.setupDrive();
-              Robot.chassis.resetEncoders();
               RobotConstants.TrajectorySegments = 0; 
            // ***********************************************   
            // FRC 2018 First Power up game decision
@@ -157,6 +156,7 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
               
                    t = new Timer();
                    Robot.chassis.resetEncoders();
+                   Robot.chassis.resetEncoders();
                    Robot.chassis.brakemode(true);
                    t.schedule(new TimerTask() {
                  // Sample setup  	
@@ -180,11 +180,11 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
                            if  (!left.isFinished() || !right.isFinished()) {                     
                     	          l = left.calculate(Robot.chassis.getLeftEncoderPosition()) ;
                                   r = right.calculate(Robot.chassis.getRightEncoderPosition()) ;
-                                  gyro_heading = Robot.chassis.getGyroAngle();   // Assuming the gyro is giving a value in degrees
+                                  gyro_heading = - Robot.chassis.getGyroAngle();   // Assuming the gyro is giving a value in degrees
                                   double desired_heading = Pathfinder.r2d(left.getHeading());  // Should also be in degrees
                      	          double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
                                   double turn = 0.8 * (-1.0/80.0) * angleDifference;
-                                  Robot.chassis.setLeftRightMotorOutputs(-(l + turn),-(r - turn));
+                                  Robot.chassis.tankDrive((l-turn),(r + turn));
                                 	SmartDashboard.putNumber("tra r ",r );
                                   	SmartDashboard.putNumber("tra l ",l);
                                     SmartDashboard.putNumber("tra head", desired_heading);

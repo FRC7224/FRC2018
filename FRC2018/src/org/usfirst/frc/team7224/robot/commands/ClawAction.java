@@ -37,12 +37,24 @@ public class ClawAction extends Command {
 
 		
 	    // ****************************** claw *******************************************
-		if (Robot.oi.joystick1.getRawButton(RobotConstants.kclawbutton)) {
+		
+	if (Robot.oi.joystick1.getRawButton(RobotConstants.kclawbutton)) 
+				Robot.claw.openClaw();
+			 else { //  toggle off
+				Robot.claw.closeClaw();
+			 }		
+
+		
+		
+		
+		
+		
+	/*	if (Robot.oi.joystick1.getRawButton(RobotConstants.kclawbutton)) {
 			if (closeTimer.get() == 0) {
 				if (RobotConstants.clawOpenState == false) {
 					Robot.claw.openClaw();
 
-				} else { // If the shooter mode was on then toggle off
+				} else { //  toggle off
 					Robot.claw.closeClaw();
 					
 				} // end sate check
@@ -55,7 +67,7 @@ public class ClawAction extends Command {
 			closeTimer.stop();
 			closeTimer.reset();
 		}
-
+*/
 	
 	SmartDashboard.putBoolean("claw end", RobotConstants.clawOpenState);
 

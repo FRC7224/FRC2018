@@ -31,7 +31,7 @@ public class ChassisTeleopDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	     double forward = Robot.chassis.deadZone(Robot.oi.joystick1.getY()); // forward
+    	     double forward = -Robot.chassis.deadZone(Robot.oi.joystick1.getY()); // forward
              double turn = Robot.chassis.deadZone(Robot.oi.joystick1.getX()); // turn
              Robot.chassis.autoshift();
              Robot.chassis.arcadeDrive(forward, turn);
