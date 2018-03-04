@@ -153,7 +153,7 @@ public class AutonomousCmdTrajectoryFollowerFileGenerator extends Command {
                                   double desired_heading = Pathfinder.r2d(left.getHeading());  // Should also be in degrees
                      	          double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
                                   double turn = 0.8 * (-1.0/80.0) * angleDifference;
-                                  Robot.chassis.tankDrive((l-turn),(r + turn));
+                                  Robot.chassis.tankDrive((l+turn),(r - turn));
                               //    Robot.chassis.tankDrive(-(l + turn),-(r - turn));
                                   SmartDashboard.putNumber("tra head", desired_heading);
                                  SmartDashboard.putNumber("tra angle Difference", angleDifference);
@@ -195,7 +195,7 @@ public class AutonomousCmdTrajectoryFollowerFileGenerator extends Command {
 
         @Override
         protected boolean isFinished() {
-        	 if (left.isFinished() || right.isFinished() || timeout.get() > 8) {
+        	 if (left.isFinished() || right.isFinished() || timeout.get() > 15) {
         	  return true;
             }
             return false;

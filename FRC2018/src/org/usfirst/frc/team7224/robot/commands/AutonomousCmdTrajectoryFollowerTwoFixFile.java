@@ -139,8 +139,8 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
                 // 6" * .0254 = .1524
                   
 
-                    left.configureEncoder(Robot.chassis.getLeftEncoderPosition(), 1920, 0.1524);
-                    right.configureEncoder(Robot.chassis.getRightEncoderPosition(), 1920, 0.1524);
+                  left.configureEncoder(Robot.chassis.getLeftEncoderPosition(), 370, 0.1524);
+                  right.configureEncoder(Robot.chassis.getRightEncoderPosition(), 370, 0.1525);
                      
                    
                   
@@ -184,7 +184,7 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
                                   double desired_heading = Pathfinder.r2d(left.getHeading());  // Should also be in degrees
                      	          double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
                                   double turn = 0.8 * (-1.0/80.0) * angleDifference;
-                                  Robot.chassis.tankDrive((l-turn),(r + turn));
+                                  Robot.chassis.tankDrive((l+turn),(r - turn));
                                 	SmartDashboard.putNumber("tra r ",r );
                                   	SmartDashboard.putNumber("tra l ",l);
                                     SmartDashboard.putNumber("tra head", desired_heading);

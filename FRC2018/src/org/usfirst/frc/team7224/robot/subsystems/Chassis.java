@@ -7,7 +7,9 @@ package org.usfirst.frc.team7224.robot.subsystems;
  import com.ctre.phoenix.motorcontrol.ControlMode;
  import com.ctre.phoenix.motorcontrol.NeutralMode;
  import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
- import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
  import edu.wpi.first.wpilibj.Encoder;
  import edu.wpi.first.wpilibj.Timer;
 
@@ -22,14 +24,14 @@ package org.usfirst.frc.team7224.robot.subsystems;
 public class Chassis extends PIDSubsystem {
 
 
-     private final WPI_TalonSRX right1 = RobotMap.chassisTalonSRX1;
-     private final WPI_TalonSRX right2 = RobotMap.chassisTalonSRX2;    
-     private final WPI_TalonSRX right3 = RobotMap.chassisTalonSRX3;
+     private final WPI_VictorSPX right1 = RobotMap.chassisTalonSRX1;
+     private final WPI_VictorSPX right2 = RobotMap.chassisTalonSRX2;    
+     private final WPI_VictorSPX right3 = RobotMap.chassisTalonSRX3;
 
       
  
-    private final WPI_TalonSRX left1 = RobotMap.chassisTalonSRX4;
-    private final WPI_TalonSRX left2 = RobotMap.chassisTalonSRX5;
+    private final WPI_VictorSPX left1 = RobotMap.chassisTalonSRX4;
+    private final WPI_VictorSPX left2 = RobotMap.chassisTalonSRX5;
     private final WPI_TalonSRX left3 = RobotMap.chassisTalonSRX6;
    
     
@@ -172,6 +174,7 @@ public class Chassis extends PIDSubsystem {
 					RobotConstants.gyroPIDOutput = 0.0; // Reset PIDOutput to zero
 					turning = false; // Set turning to false, because we are not
 									 // turning any more
+				 SmartDashboard.putBoolean("turnin",turning );
 				} else if (setPointTimer.get() != 0) {// If this isn't the first time
 					if (setPointTimer.get() >= 1.0) { // Robot is moving straight
 												      // wait for timer before turning on PID
@@ -180,6 +183,7 @@ public class Chassis extends PIDSubsystem {
 						getPIDController().setSetpoint(0);
 						setPointTimer.stop();
 						setPointTimer.reset();
+						 SmartDashboard.putNumber("setpoittimer", setPointTimer.get() );
 					}
 				} else { // after initializing ** Driving straight using PID
 					turn = RobotConstants.gyroPIDOutput;
@@ -187,6 +191,7 @@ public class Chassis extends PIDSubsystem {
 				// ELSE the user is still commanding
 				// User is commanding a turn
 			} else if (turn != 0.0) {
+				 SmartDashboard.putNumber("turn in elseif",turn );
 				disablePID();
 				setPointTimer.stop();
 				setPointTimer.reset();
@@ -297,7 +302,7 @@ public class Chassis extends PIDSubsystem {
 
 	public void arcade(double moveValue, double rotateValue) {
 
-		boolean squaredInputs = true;
+		boolean squaredInputs = false;
 		moveValue = limit(moveValue);
 		rotateValue = limit(rotateValue);
 		if (squaredInputs) {
