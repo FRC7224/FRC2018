@@ -46,7 +46,7 @@ public class WinchAction extends Command {
     	    	  RobotConstants.WinchState = false;
     	    	  Robot.winch.setWinchSpeed(RobotConstants.kminWinchSpeed);
     	    	   }
-    	      SmartDashboard.putBoolean("winch state", RobotConstants.WinchState);
+    	 //     SmartDashboard.putBoolean("winch state", RobotConstants.WinchState);
  	     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -24,7 +24,7 @@ public class PneumaticsStart extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
         Robot.pneumatics.startCompressor();
-    	SmartDashboard.putNumber("Tele ninit ph",0);
+ //   	SmartDashboard.putNumber("Tele ninit ph",0);
     }
 
     // Called repeatedly when this Command is scheduled to run

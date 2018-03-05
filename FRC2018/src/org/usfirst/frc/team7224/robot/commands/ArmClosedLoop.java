@@ -48,8 +48,8 @@ public class ArmClosedLoop extends Command {
      		  RobotConstants.targetPositionRotations = RobotConstants.kArm_ScaleHT;
      	  
      	    Robot.arm.armControl();
-            SmartDashboard.putNumber("Height", height);
-            SmartDashboard.putNumber("RobotConstants.targetPositionRotations", RobotConstants.targetPositionRotations);
+      //      SmartDashboard.putNumber("Height", height);
+     //       SmartDashboard.putNumber("RobotConstants.targetPositionRotations", RobotConstants.targetPositionRotations);
 
             
     }

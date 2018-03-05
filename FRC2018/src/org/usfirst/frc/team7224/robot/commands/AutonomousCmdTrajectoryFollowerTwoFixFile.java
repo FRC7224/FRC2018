@@ -53,57 +53,61 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
            // FRC 2018 First Power up game decision
            // Determine Switch, Scale or far Switch
            // ***********************************************  
-            if(RobotConstants.gameData.length() > 0) {
+              if(RobotConstants.gameData.length() > 0) {
                   switch (Position) { 
                   case 0:  // Drive straight
           	    	       fileString = "/home/lvuser/driveStraight.traj"; 
            	    	       RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT; 
-           	    	       maxtimeout = 8;
+           	    	       maxtimeout = 10;
                   case 1:  // Position left  
                 	       if (RobotConstants.gameData.charAt(1) == 'L') { // Go for scale
                 	        fileString = "/home/lvuser/leftToScale.traj"; 
                 	    	RobotConstants.targetPositionRotations = RobotConstants.kArm_ScaleHT;
-                	    	maxtimeout = 8;
+                	    	maxtimeout = 12;
                 	       }else if (RobotConstants.gameData.charAt(0) == 'L') { // Go to switch
                 	    	fileString = "/home/lvuser/leftToSwitch.traj"; 
                    	    	RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
-                   	    	maxtimeout = 8;
+                   	    	maxtimeout = 10;
                 	       }else { // Position 1 is not left it must be right - go to far switch
-                	    	fileString = "/home/lvuser/leftToFarSwitch.traj"; 
-                      	    RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
-                      	    maxtimeout = 8;
+                	    //	fileString = "/home/lvuser/leftToFarSwitch.traj"; 
+                	    	fileString = "/home/lvuser/driveStraight.traj"; 
+                      	//    RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
+                    	      RobotConstants.targetPositionRotations = RobotConstants.kArm_FieldHT;	
+                      	    maxtimeout = 10;
                 	       } // end left processing
                            break;
                   case 2:  // Position Center 
            	               if (RobotConstants.gameData.charAt(0) == 'L') { // Go to left switch
            	    	        fileString = "/home/lvuser/CenterToLeftSwitch.traj"; 
            	    	        RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
-           	    	        maxtimeout = 8;
+           	    	        maxtimeout = 10;
            	               }else  { // Go to right switch
            	                fileString = "/home/lvuser/CenterToRightSwitch.traj"; 
               	    	    RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
-              	    	    maxtimeout = 8;
+              	    	    maxtimeout = 10;
            	               } // end center processing
                            break;
                   case 3:  // Position right  
            	               if (RobotConstants.gameData.charAt(1) == 'R') { // Go for scale
            	                fileString = "/home/lvuser/rightToScale.traj"; 
                 	        RobotConstants.targetPositionRotations = RobotConstants.kArm_ScaleHT;
-                	        maxtimeout = 8;
+                	        maxtimeout = 12;
            	               }else if (RobotConstants.gameData.charAt(0) == 'R') { // Go to switch
            	                fileString = "/home/lvuser/rightToSwitch.traj"; 
               	    	    RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
-              	    	    maxtimeout = 8;
+    
+              	    	    maxtimeout = 10;
            	               }else { // Position 1 is not left it must be left - go to far switch
-           	    	        fileString = "/home/lvuser/rightToFarSwitch.traj"; 
-                 	        RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
-                 	        maxtimeout = 8;
+           	    	//        fileString = "/home/lvuser/rightToFarSwitch.traj"; 
+           	                fileString = "/home/lvuser/driveStraight.traj";    
+                 	  //      RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
+                   	        maxtimeout = 10;
            	               } // end right processing
                            break;         
                   default: // Default drive straight 
                            fileString = "/home/lvuser/driveStraight.traj"; 
   	    	               RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT; 
-  	    	               maxtimeout = 8;
+  	      	               maxtimeout = 10;
                            break;         
                   } // end of switch
               } else {
@@ -139,8 +143,8 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
                 // 6" * .0254 = .1524
                   
 
-                  left.configureEncoder(Robot.chassis.getLeftEncoderPosition(), 370, 0.1524);
-                  right.configureEncoder(Robot.chassis.getRightEncoderPosition(), 370, 0.1525);
+                  left.configureEncoder(Robot.chassis.getLeftEncoderPosition(), 365, 0.1524);
+                  right.configureEncoder(Robot.chassis.getRightEncoderPosition(), 365, 0.1525);
                      
                    
                   
@@ -185,16 +189,19 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
                      	          double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
                                   double turn = 0.8 * (-1.0/80.0) * angleDifference;
                                   Robot.chassis.tankDrive((l+turn),(r - turn));
-                                	SmartDashboard.putNumber("tra r ",r );
+                            /*    	SmartDashboard.putNumber("tra r ",r );
                                   	SmartDashboard.putNumber("tra l ",l);
                                     SmartDashboard.putNumber("tra head", desired_heading);
                                     SmartDashboard.putNumber("tra angle Difference", angleDifference);
                                     SmartDashboard.putNumber("tra gyro ", Robot.chassis.getGyroAngle());
                                     SmartDashboard.putNumber("tra encoder right", Robot.chassis.getRightEncoderPosition());
                                     SmartDashboard.putNumber("tra encodeer left", Robot.chassis.getLeftEncoderPosition()); 
-  
+  */
                             } else {
                         	   Robot.chassis.tankDrive(0,0);
+                        	    left.reset();
+                                right.reset();
+                                t.cancel();
                             }
                     	   }
                                               	 
@@ -214,6 +221,7 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
         protected boolean isFinished() {
         	 if (left.isFinished() || right.isFinished() || (timeout.get() > maxtimeout)) {
         		Robot.chassis.resetEncoders();	 
+        		t.cancel();
         	  return true;
             }
             return false;

@@ -80,12 +80,12 @@ public class AutonomousCmdTrajectoryFollowerFileGenerator extends Command {
                    // Max Acceleration:    10 m/s/s
                    // Max Jerk:            60 m/s/s/s
    //                  Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,0.05, .35, .3, .4);
-                     Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,0.05, .60, .3, .4);             
+                     Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,0.05,1.2, .5, .4);             
            
                    Trajectory trajectory = Pathfinder.generate(points, config);
  //                File myFile = new File("/home/lvuser/mytrafile.csv");
  //                Pathfinder.writeToCSV(myFile, trajectory);
-                              File myFile = new File("/home/lvuser/rightToScale.traj");
+                              File myFile = new File("/home/lvuser/leftToSwitch.traj");
                              Pathfinder.writeToFile(myFile, trajectory);
 
                  double wheelbase_width =  .61; // MG updated
@@ -105,8 +105,8 @@ public class AutonomousCmdTrajectoryFollowerFileGenerator extends Command {
                 // Wheel Diameter is the diameter of your wheels (or pulley for a track system) in meters
                 // 6" * .0254 = .1016
 
-                    left.configureEncoder(Robot.chassis.getLeftEncoderPosition(), 370, 0.1524);
-                    right.configureEncoder(Robot.chassis.getRightEncoderPosition(), 370, 0.1525);
+                    left.configureEncoder(Robot.chassis.getLeftEncoderPosition(), 365, 0.1524);
+                    right.configureEncoder(Robot.chassis.getRightEncoderPosition(), 365, 0.1525);
    
                    
                    
@@ -171,7 +171,7 @@ public class AutonomousCmdTrajectoryFollowerFileGenerator extends Command {
                         	   Robot.chassis.tankDrive(0,0);
                                left.reset();
                                right.reset();
-                            }
+                                       }
                            SmartDashboard.putNumber("tra gyro 2", Robot.chassis.getGyroAngle());
                      //      System.out.println("r "+ r);
                      //      System.out.println("l "+ l);
@@ -185,9 +185,10 @@ public class AutonomousCmdTrajectoryFollowerFileGenerator extends Command {
                    }, 0, 50); // end timed task  0 delay, execute every 50 mSec
                   left.reset();
                   right.reset();
+                  Robot.chassis.resetEncoders();
                   Robot.chassis.displayChasisData();
               
-        }
+           }
         @Override
         protected void execute() {
          }
@@ -195,7 +196,8 @@ public class AutonomousCmdTrajectoryFollowerFileGenerator extends Command {
 
         @Override
         protected boolean isFinished() {
-        	 if (left.isFinished() || right.isFinished() || timeout.get() > 15) {
+        	 if (left.isFinished() || right.isFinished() || timeout.get() > 11) {
+        	  Robot.chassis.resetEncoders();	 
         	  return true;
             }
             return false;

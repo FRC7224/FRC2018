@@ -183,7 +183,7 @@ public class Chassis extends PIDSubsystem {
 						getPIDController().setSetpoint(0);
 						setPointTimer.stop();
 						setPointTimer.reset();
-						 SmartDashboard.putNumber("setpoittimer", setPointTimer.get() );
+				//		 SmartDashboard.putNumber("setpoittimer", setPointTimer.get() );
 					}
 				} else { // after initializing ** Driving straight using PID
 					turn = RobotConstants.gyroPIDOutput;
@@ -191,7 +191,7 @@ public class Chassis extends PIDSubsystem {
 				// ELSE the user is still commanding
 				// User is commanding a turn
 			} else if (turn != 0.0) {
-				 SmartDashboard.putNumber("turn in elseif",turn );
+	//			 SmartDashboard.putNumber("turn in elseif",turn );
 				disablePID();
 				setPointTimer.stop();
 				setPointTimer.reset();
@@ -244,13 +244,14 @@ public class Chassis extends PIDSubsystem {
 	
 	public void displayChasisData() {
 		// These are the new encoders
-		SmartDashboard.putNumber("LEFT ENCODER", leftEncoder.get());
+	/*	SmartDashboard.putNumber("LEFT ENCODER", leftEncoder.get());
 		SmartDashboard.putNumber("RIGTH ENCODER", rightEncoder.get());
 		SmartDashboard.putNumber("Chassis angle", gyro.getAngle());
 		SmartDashboard.putNumber("Chassis gyro setpoint", getSetpoint());
 		SmartDashboard.putNumber("Chassis gyro error", getPIDController().getError());
 		SmartDashboard.putNumber("Chassis turn", RobotConstants.gyroPIDOutput);
 		SmartDashboard.putNumber("Drive Rate",leftEncoder.getRate());
+		*/
 	}
 	
 	

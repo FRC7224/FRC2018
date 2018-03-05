@@ -36,8 +36,8 @@ public class ChassisTeleopDrive extends Command {
              Robot.chassis.autoshift();
              Robot.chassis.arcadeDrive(forward, turn);
              Robot.chassis.displayChasisData();
-     		SmartDashboard.putNumber("Y", forward);
-    		SmartDashboard.putNumber("X", turn);
+     //		SmartDashboard.putNumber("Y", forward);
+    //		SmartDashboard.putNumber("X", turn);
     	
     		
 

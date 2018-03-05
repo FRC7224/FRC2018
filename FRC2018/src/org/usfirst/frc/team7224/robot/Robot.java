@@ -143,6 +143,7 @@ public class Robot extends TimedRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null) {
 			autonomousCommand.cancel();
+		Robot.chassis.resetgyro();	
 		}
 	}
 

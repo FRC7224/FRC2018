@@ -13,7 +13,5 @@ public class AutonomousGrpCenterAutoSelect extends CommandGroup{
 	     addSequential(new AutonomousCmdTrajectoryFollowerTwoFixFile(2));
 	     addSequential(new AutonomousCmdWait(0.5)); // wait 
 	     addSequential(new AutonomousCmdClaw(true)); // Open claw
-	     addSequential(new AutonomousCmdSimpleDrive(-0.2, 1.0)); // Backup
-	     addSequential(new AutonomousCmdArmHeight(RobotConstants.kArm_FieldHT)); // Lower Arm
 		}
 }

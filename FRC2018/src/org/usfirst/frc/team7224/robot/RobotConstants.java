@@ -25,6 +25,9 @@ public class RobotConstants {
 	public static int kWinchButtonA = 9;
 	public static int kWinchButtonB = 10;
 	
+	// Simple Drive
+//	public static double simpleDriveTime = 0.0;
+	
 	// Chassis 
 	public static boolean kenablePID = true;
 	public static double Kp = 0.0005; //.005 0.012

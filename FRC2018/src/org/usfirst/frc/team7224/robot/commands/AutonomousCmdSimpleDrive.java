@@ -6,6 +6,7 @@ import org.usfirst.frc.team7224.robot.Robot;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutonomousCmdSimpleDrive extends Command {
 
@@ -30,6 +31,7 @@ public class AutonomousCmdSimpleDrive extends Command {
 	@Override
 	protected void initialize() {
 		timeout = new Timer();
+		timeout.start();
 		Robot.chassis.setupDrive();
 	}
 
@@ -37,19 +39,26 @@ public class AutonomousCmdSimpleDrive extends Command {
 	protected void execute() {
 		Robot.chassis.displayChasisData();
 		Robot.chassis.arcadeDrive(power, 0);
+		 SmartDashboard.putNumber("simpledrive timer", timeout.get() );
+		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if (timeout.get() > drivetime) 
-			return true;		
+		if (timeout.get() > drivetime) {
+			Robot.chassis.arcadeDrive(0, 0);
+			Robot.chassis.resetgyro();
+			Robot.chassis.resetEncoders();
+			return true;	}	
 		else
 		    return false;
 	}
-
+	
 	@Override
 	protected void end() {
 		Robot.chassis.arcadeDrive(0, 0);
+		timeout.stop();
+		timeout.reset();
 	}
 
 	@Override
