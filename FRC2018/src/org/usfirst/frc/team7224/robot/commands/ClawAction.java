@@ -69,7 +69,7 @@ public class ClawAction extends Command {
 		}
 */
 	
-	SmartDashboard.putBoolean("claw end", RobotConstants.clawOpenState);
+//	SmartDashboard.putBoolean("claw end", RobotConstants.clawOpenState);
 
 	
 	} // end exectute

@@ -39,7 +39,7 @@ public class IntakeAction extends Command {
     	     if (intakespeed <= RobotConstants.kminIntakeSpeed ) // limits max reverse speed
     	    	 intakespeed = RobotConstants.kminIntakeSpeed;
     	     Robot.intake.setIntakeMotor(intakespeed);
-             SmartDashboard.putNumber("Z Intake", intakespeed);
+       //      SmartDashboard.putNumber("Z Intake", intakespeed);
     	}
 	   }
 

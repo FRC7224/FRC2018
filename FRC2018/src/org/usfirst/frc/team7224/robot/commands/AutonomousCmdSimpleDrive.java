@@ -39,7 +39,7 @@ public class AutonomousCmdSimpleDrive extends Command {
 	protected void execute() {
 		Robot.chassis.displayChasisData();
 		Robot.chassis.arcadeDrive(power, 0);
-		 SmartDashboard.putNumber("simpledrive timer", timeout.get() );
+//		 SmartDashboard.putNumber("simpledrive timer", timeout.get() );
 		
 	}
 

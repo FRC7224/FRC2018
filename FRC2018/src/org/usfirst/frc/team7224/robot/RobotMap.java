@@ -38,18 +38,18 @@ public class RobotMap {
     public static Solenoid pneumaticsSolenoid1  = new Solenoid(0, 1); 
     public static Compressor pneumaticsCompressor = new Compressor(0);
     public static WPI_TalonSRX chassisTalonSRX6 = new  WPI_TalonSRX(6);
-/*    public static WPI_TalonSRX chassisTalonSRX5  = new WPI_TalonSRX(5); 
+    public static WPI_TalonSRX chassisTalonSRX5  = new WPI_TalonSRX(5); 
     public static WPI_TalonSRX chassisTalonSRX4 = new WPI_TalonSRX(4);
     public static WPI_TalonSRX chassisTalonSRX3 = new WPI_TalonSRX(3);
     public static WPI_TalonSRX chassisTalonSRX2 = new WPI_TalonSRX(2);
     public static WPI_TalonSRX chassisTalonSRX1 = new WPI_TalonSRX(1);
-*/
-    public static WPI_VictorSPX chassisTalonSRX5  = new WPI_VictorSPX(5); 
+
+/*    public static WPI_VictorSPX chassisTalonSRX5  = new WPI_VictorSPX(5); 
     public static WPI_VictorSPX chassisTalonSRX4 = new WPI_VictorSPX(4);
     public static WPI_VictorSPX chassisTalonSRX3 = new WPI_VictorSPX(3);
     public static WPI_VictorSPX chassisTalonSRX2 = new WPI_VictorSPX(2);
     public static WPI_VictorSPX chassisTalonSRX1 = new WPI_VictorSPX(1);
-    public static WPI_TalonSRX armTalonSRX7 = new WPI_TalonSRX(7);
+ */   public static WPI_TalonSRX armTalonSRX7 = new WPI_TalonSRX(7);
     public static WPI_TalonSRX winchTalonSRX8  = new WPI_TalonSRX(8);
     public static WPI_VictorSPX intakeTalonSRX9= new WPI_VictorSPX(9);
     public static WPI_VictorSPX intakeTalonSRX10  = new WPI_VictorSPX(10); 

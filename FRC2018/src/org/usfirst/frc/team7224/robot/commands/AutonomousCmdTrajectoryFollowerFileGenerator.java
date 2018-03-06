@@ -40,7 +40,7 @@ public class AutonomousCmdTrajectoryFollowerFileGenerator extends Command {
 
         @Override
         protected void initialize() {
-            SmartDashboard.putNumber("files writer", 0);
+    //        SmartDashboard.putNumber("files writer", 0);
   //  	      int startindex = RobotConstants.startPositionChooser;
   //       	 waypoints[0] = new Waypoint (0,0,0);  
  //        	 waypoints[1] = new Waypoint(RobotConstants.autostartposition[startindex][0]* inchesToMeter, RobotConstants.autostartposition[startindex][1]* inchesToMeter, Math.toRadians(RobotConstants.autostartposition[startindex][2]));
@@ -64,7 +64,7 @@ public class AutonomousCmdTrajectoryFollowerFileGenerator extends Command {
               //  		   		}; 
            
               Waypoint[] points = waypoints;
-              SmartDashboard.putNumber("files writer2", 0);
+     //         SmartDashboard.putNumber("files writer2", 0);
               
                  //               Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC,
                  //      		Trajectory.Config.SAMPLES_LOW, 0.05, 8.0, 2.0, 60.0);
@@ -85,7 +85,7 @@ public class AutonomousCmdTrajectoryFollowerFileGenerator extends Command {
                    Trajectory trajectory = Pathfinder.generate(points, config);
  //                File myFile = new File("/home/lvuser/mytrafile.csv");
  //                Pathfinder.writeToCSV(myFile, trajectory);
-                              File myFile = new File("/home/lvuser/leftToSwitch.traj");
+                              File myFile = new File("/home/lvuser/driveStraight.traj");
                              Pathfinder.writeToFile(myFile, trajectory);
 
                  double wheelbase_width =  .61; // MG updated
@@ -154,25 +154,25 @@ public class AutonomousCmdTrajectoryFollowerFileGenerator extends Command {
                      	          double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
                                   double turn = 0.8 * (-1.0/80.0) * angleDifference;
                                   Robot.chassis.tankDrive((l+turn),(r - turn));
-                              //    Robot.chassis.tankDrive(-(l + turn),-(r - turn));
+                  /*                Robot.chassis.tankDrive(-(l + turn),-(r - turn));
                                   SmartDashboard.putNumber("tra head", desired_heading);
                                  SmartDashboard.putNumber("tra angle Difference", angleDifference);
                                  SmartDashboard.putNumber("tra gyro 2",  -Robot.chassis.getGyroAngle());
                                             SmartDashboard.putNumber("tra right", r);
                                               SmartDashboard.putNumber("tra left", l);  
                                               SmartDashboard.putNumber("Turn", turn);                 
-              //                 SmartDashboard.putDouble("tra right", -(r - turn));
-              //                   SmartDashboard.putDouble("tra left", -(l + turn));  
+                              SmartDashboard.putDouble("tra right", -(r - turn));
+                                SmartDashboard.putDouble("tra left", -(l + turn));  
                                 SmartDashboard.putNumber("tra encoder right", Robot.chassis.getRightEncoderPosition());
-                                 SmartDashboard.putNumber("tra encodeer left", Robot.chassis.getLeftEncoderPosition()); 
-                                  
+                                SmartDashboard.putNumber("tra encodeer left", Robot.chassis.getLeftEncoderPosition()); 
+                    */              
                               
                             } else {
                         	   Robot.chassis.tankDrive(0,0);
                                left.reset();
                                right.reset();
                                        }
-                           SmartDashboard.putNumber("tra gyro 2", Robot.chassis.getGyroAngle());
+                      //     SmartDashboard.putNumber("tra gyro 2", Robot.chassis.getGyroAngle());
                      //      System.out.println("r "+ r);
                      //      System.out.println("l "+ l);
        //                    SmartDashboard.putNumber("tra encoder right", Robot.chassis.getRightEncoderPosition());

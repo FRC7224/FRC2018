@@ -24,14 +24,14 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 public class Chassis extends PIDSubsystem {
 
 
-     private final WPI_VictorSPX right1 = RobotMap.chassisTalonSRX1;
-     private final WPI_VictorSPX right2 = RobotMap.chassisTalonSRX2;    
-     private final WPI_VictorSPX right3 = RobotMap.chassisTalonSRX3;
+     private final WPI_TalonSRX right1 = RobotMap.chassisTalonSRX1;
+     private final WPI_TalonSRX right2 = RobotMap.chassisTalonSRX2;    
+     private final WPI_TalonSRX right3 = RobotMap.chassisTalonSRX3;
 
       
  
-    private final WPI_VictorSPX left1 = RobotMap.chassisTalonSRX4;
-    private final WPI_VictorSPX left2 = RobotMap.chassisTalonSRX5;
+    private final WPI_TalonSRX left1 = RobotMap.chassisTalonSRX4;
+    private final WPI_TalonSRX left2 = RobotMap.chassisTalonSRX5;
     private final WPI_TalonSRX left3 = RobotMap.chassisTalonSRX6;
    
     
@@ -174,7 +174,7 @@ public class Chassis extends PIDSubsystem {
 					RobotConstants.gyroPIDOutput = 0.0; // Reset PIDOutput to zero
 					turning = false; // Set turning to false, because we are not
 									 // turning any more
-				 SmartDashboard.putBoolean("turnin",turning );
+	//			 SmartDashboard.putBoolean("turnin",turning );
 				} else if (setPointTimer.get() != 0) {// If this isn't the first time
 					if (setPointTimer.get() >= 1.0) { // Robot is moving straight
 												      // wait for timer before turning on PID

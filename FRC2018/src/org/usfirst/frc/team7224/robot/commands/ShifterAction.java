@@ -34,10 +34,17 @@ public class ShifterAction extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		
-
+		if (Robot.oi.joystick1.getRawButton(RobotConstants.kshiftbutton)) {
+			Robot.shifter.openShifter();
+		   RobotConstants.shiftOpenState = true;
+		   }
+		 else { //  toggle off
+			 Robot.shifter.closeShifter(); 
+			 RobotConstants.shiftOpenState = false;
+		   }	
 		
 	    // ****************************** Shifter *******************************************
-		if (Robot.oi.joystick1.getRawButton(RobotConstants.kshiftbutton)) {
+/*		if (Robot.oi.joystick1.getRawButton(RobotConstants.kshiftbutton)) {
 			if (closeTimer.get() == 0) {
 				if (RobotConstants.shiftOpenState == false) {
 					RobotConstants.shiftOpenState = true;
@@ -56,9 +63,9 @@ public class ShifterAction extends Command {
 			closeTimer.stop();
 			closeTimer.reset();
 		}
-
+*/
 	
-	SmartDashboard.putBoolean("Shifter", RobotConstants.shiftOpenState);
+//	SmartDashboard.putBoolean("Shifter", RobotConstants.shiftOpenState);
 
 	
 	} // end exectute

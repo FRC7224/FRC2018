@@ -57,17 +57,17 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
                   switch (Position) { 
                   case 0:  // Drive straight
           	    	       fileString = "/home/lvuser/driveStraight.traj"; 
-           	    	       RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT; 
+           	    	       RobotConstants.targetPositionRotations = RobotConstants.kArm_FieldHT; 
            	    	       maxtimeout = 10;
                   case 1:  // Position left  
                 	       if (RobotConstants.gameData.charAt(1) == 'L') { // Go for scale
-                	        fileString = "/home/lvuser/leftToScale.traj"; 
-                	    	RobotConstants.targetPositionRotations = RobotConstants.kArm_ScaleHT;
-                	    	maxtimeout = 12;
+                	       fileString = "/home/lvuser/leftToScale.traj"; 
+                	       RobotConstants.targetPositionRotations = RobotConstants.kArm_ScaleHT;
+                	       maxtimeout = 12;
                 	       }else if (RobotConstants.gameData.charAt(0) == 'L') { // Go to switch
                 	    	fileString = "/home/lvuser/leftToSwitch.traj"; 
                    	    	RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
-                   	    	maxtimeout = 10;
+                   	       maxtimeout = 10;
                 	       }else { // Position 1 is not left it must be right - go to far switch
                 	    //	fileString = "/home/lvuser/leftToFarSwitch.traj"; 
                 	    	fileString = "/home/lvuser/driveStraight.traj"; 
@@ -116,8 +116,8 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
                 } // End of iff
             
                   
-                  SmartDashboard.putString("GameData", RobotConstants.gameData);
-                  SmartDashboard.putString("FileName", fileString);
+        //          SmartDashboard.putString("GameData", RobotConstants.gameData);
+        //          SmartDashboard.putString("FileName", fileString);
         
                   // Raise arm to height set in switch 
           	      Robot.arm.armControl();
@@ -189,14 +189,14 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
                      	          double angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
                                   double turn = 0.8 * (-1.0/80.0) * angleDifference;
                                   Robot.chassis.tankDrive((l+turn),(r - turn));
-                            /*    	SmartDashboard.putNumber("tra r ",r );
+      /*                         	SmartDashboard.putNumber("tra r ",r );
                                   	SmartDashboard.putNumber("tra l ",l);
                                     SmartDashboard.putNumber("tra head", desired_heading);
                                     SmartDashboard.putNumber("tra angle Difference", angleDifference);
                                     SmartDashboard.putNumber("tra gyro ", Robot.chassis.getGyroAngle());
                                     SmartDashboard.putNumber("tra encoder right", Robot.chassis.getRightEncoderPosition());
                                     SmartDashboard.putNumber("tra encodeer left", Robot.chassis.getLeftEncoderPosition()); 
-  */
+      */
                             } else {
                         	   Robot.chassis.tankDrive(0,0);
                         	    left.reset();

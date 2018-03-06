@@ -35,7 +35,7 @@ public class Pneumatics extends Subsystem {
 
    public void startCompressor() {
        compressor.start();
-   	SmartDashboard.putNumber("got to start", 0);
+//   	SmartDashboard.putNumber("got to start", 0);
    }
 }
 

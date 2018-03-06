@@ -30,9 +30,9 @@ public class RobotConstants {
 	
 	// Chassis 
 	public static boolean kenablePID = true;
-	public static double Kp = 0.0005; //.005 0.012
+	public static double Kp = 0.0002; //.005 0.012
 	public static double Ki = 0.0; //.1 0.0025
-	public static double Kd = 0.1;  // .1
+	public static double Kd = 0.05;  // .1
 	public static double kgyroPIDErrorTolerance = 1.0; // in degrees
 	public static double gyroPIDOutput = 0.0;
 	public static double kshiftRateUp = 1200;
