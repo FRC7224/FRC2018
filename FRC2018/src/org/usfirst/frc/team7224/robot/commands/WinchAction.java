@@ -40,7 +40,7 @@ public class WinchAction extends Command {
     	    	  if (winchspeed <= RobotConstants.kminWinchSpeed)  // prevent reverse
     	    		  winchspeed = RobotConstants.kminWinchSpeed;
     	    	  Robot.winch.setWinchSpeed(winchspeed);
-    	    	  SmartDashboard.putNumber("winchspeed", winchspeed);
+    //	    	  SmartDashboard.putNumber("winchspeed", winchspeed);
     	      	  }
     	    	   else {	  
     	    	  RobotConstants.WinchState = false;

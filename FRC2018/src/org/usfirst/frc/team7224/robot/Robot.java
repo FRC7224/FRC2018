@@ -85,6 +85,7 @@ public class Robot extends TimedRobot {
 		 
 	      server = CameraServer.getInstance();
 	  server.startAutomaticCapture(0);
+		RobotConstants.targetPositionRotations = 0; // reset on startup crate height
 //		  server.startAutomaticCapture(1);
 		  
      	 
@@ -118,6 +119,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+	
 		RobotConstants.gameData = DriverStation.getInstance().getGameSpecificMessage();
 		autonomousCommand = autoChooser.getSelected();
 

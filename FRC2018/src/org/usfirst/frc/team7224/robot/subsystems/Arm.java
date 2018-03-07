@@ -7,8 +7,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team7224.robot.commands.*;
 
@@ -47,8 +46,13 @@ public class Arm extends Subsystem {
 	        arm.config_kI(RobotConstants.kPIDLoopIdx, RobotConstants.kArmPIDI, RobotConstants.kTimeoutMs);
 	        arm.config_kD(RobotConstants.kPIDLoopIdx, RobotConstants.kArmPIDD, RobotConstants.kTimeoutMs);
 
-	        RobotConstants.targetPositionRotations = 0; // reset on startup crate height
 	    }
+	  
+	   public void armPosReset () {
+	       arm.setSelectedSensorPosition(0, 0, 10);
+	       RobotConstants.targetPositionRotations= RobotConstants.kArm_Zero_HT;
+	 //      SmartDashboard.putNumber("Reseting", RobotConstants.targetPositionRotations);
+	   }
 
 	  @Override
 	    public void initDefaultCommand() {
@@ -69,7 +73,7 @@ public class Arm extends Subsystem {
 	        	
 	        }
 	        /* print every ten loops, printing too much too fast is generally bad for performance */ 
-	        if(++_loops >= 10) {
+	        if(++_loops >= 100) {
 	        	_loops = 0;
 	        	System.out.println(_sb.toString());
 	        }

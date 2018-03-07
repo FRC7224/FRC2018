@@ -19,10 +19,12 @@ public class RobotConstants {
 	public static double kdeadzone = 0.1; // updated by MG
 	public static int kclawbutton = 1;
 	public static int kshiftbutton = 2;
+	public static int kzeroResetbutton = 4;
 	public static int karm_FieldHTbutton = 7;
 	public static int karm_SwitchHTbutton = 6;
 	public static int karm_ScaleHTbutton = 5; 
 	public static int kWinchButtonA = 9;
+	public static int kArmOverideButton = 8;
 	public static int kWinchButtonB = 10;
 	
 	// Simple Drive
@@ -46,8 +48,9 @@ public class RobotConstants {
 	public static final int kTimeoutMs = 10;
 	public static final double kMaxSpeed = 0.6;
 	public static final double kStopSpeed = 0.0;
-	public static double targetPositionRotations;
+	public static double targetPositionRotations = 0;
 	public static double kArmManualSensitivity = 2000;
+	public static double kArm_Zero_HT = 0;
 	public static double kArm_FieldHT = 5000;
 	public static double kArm_SwitchHT = 85000;
 	public static double kArm_ScaleHT = 280000; 

@@ -85,7 +85,7 @@ public class AutonomousCmdTrajectoryFollowerFileGenerator extends Command {
                    Trajectory trajectory = Pathfinder.generate(points, config);
  //                File myFile = new File("/home/lvuser/mytrafile.csv");
  //                Pathfinder.writeToCSV(myFile, trajectory);
-                              File myFile = new File("/home/lvuser/driveStraight.traj");
+                              File myFile = new File("/home/lvuser/rightToScale.traj");
                              Pathfinder.writeToFile(myFile, trajectory);
 
                  double wheelbase_width =  .61; // MG updated

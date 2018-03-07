@@ -34,22 +34,47 @@ public class ArmClosedLoop extends Command {
     	    double height = Robot.chassis.deadZone(Robot.oi.joystick1.getRawAxis(4)); // height
      	    RobotConstants.targetPositionRotations =  RobotConstants.targetPositionRotations +
      	    		(height * RobotConstants.kArmManualSensitivity); 
-     	    if (RobotConstants.targetPositionRotations <= RobotConstants.kArmMinHt)
+     	    
+     	    
+     	   if (Robot.oi.joystick1.getRawButtonPressed(RobotConstants.kArmOverideButton)) {
+     		   /// This is bad only use in an emergancy 
+     		     SmartDashboard.putNumber("Override", RobotConstants.targetPositionRotations);
+     		    if (RobotConstants.targetPositionRotations <= RobotConstants.kArmMinHt) 
+     		    	 RobotConstants.kArmMinHt =RobotConstants.targetPositionRotations;  // Redefine bottom
+          	    if (RobotConstants.targetPositionRotations >= RobotConstants.kArmMaxHt )
+          	    	RobotConstants.kArmMaxHt = RobotConstants.targetPositionRotations;  // Redefine top
+     	   }  else {
+     		   // Button not pressed - Normal mode     	
+     	    if (RobotConstants.targetPositionRotations <= RobotConstants.kArmMinHt) 
      	       RobotConstants.targetPositionRotations = RobotConstants.kArmMinHt;  // Limit to zero height
      	    if (RobotConstants.targetPositionRotations >= RobotConstants.kArmMaxHt )
      	       RobotConstants.targetPositionRotations = RobotConstants.kArmMaxHt;  // Limit to max height
-     	    
+     	   }
+     	   
+     	   
+     	   
+     	   
      	    // Preset Heights
-     	    if (Robot.oi.joystick1.getRawButtonPressed(RobotConstants.karm_FieldHTbutton )) 
+     	    if (Robot.oi.joystick1.getRawButtonPressed(RobotConstants.karm_FieldHTbutton )) {
      		  RobotConstants.targetPositionRotations = RobotConstants.kArm_FieldHT;
-     	    else if (Robot.oi.joystick1.getRawButtonPressed(RobotConstants.karm_SwitchHTbutton))
+     	    }else if (Robot.oi.joystick1.getRawButtonPressed(RobotConstants.karm_SwitchHTbutton)) {
      		  RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
-     	    else if (Robot.oi.joystick1.getRawButtonPressed(RobotConstants.karm_ScaleHTbutton))
+     	    }else if (Robot.oi.joystick1.getRawButtonPressed(RobotConstants.karm_ScaleHTbutton)) {
      		  RobotConstants.targetPositionRotations = RobotConstants.kArm_ScaleHT;
+     	    }
+     	    
+     	    
+     	   if (Robot.oi.joystick1.getRawButton(RobotConstants.kArmOverideButton) && 
+     			  Robot.oi.joystick1.getRawButton(RobotConstants.kzeroResetbutton)) {
+     		   // This is bad... something went wrong ...  emergency reset
+     //		  SmartDashboard.putNumber("RESSEEEEEEEE", RobotConstants.targetPositionRotations);
+     		  Robot.arm.armPosReset();
+     	   }
+     	    
      	  
      	    Robot.arm.armControl();
       //      SmartDashboard.putNumber("Height", height);
-     //       SmartDashboard.putNumber("RobotConstants.targetPositionRotations", RobotConstants.targetPositionRotations);
+      //      SmartDashboard.putNumber("Target Arm Position", RobotConstants.targetPositionRotations);
 
             
     }

@@ -3,23 +3,28 @@ import org.usfirst.frc.team7224.robot.Robot;
 import org.usfirst.frc.team7224.robot.RobotConstants;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutonomousCmdArmHeight extends Command {
 
 	boolean State;
+	double position = 0;
 
 	public AutonomousCmdArmHeight(double height) {
 		requires(Robot.arm);
-		RobotConstants.targetPositionRotations = height;
+	 position = height;
 	}
 
 	@Override
 	protected void initialize() {
+		RobotConstants.targetPositionRotations = position;
+	    SmartDashboard.putNumber("Target Arm Position", RobotConstants.targetPositionRotations);
 		Robot.arm.armControl();
 	}
 
 	@Override
 	protected void execute() {
+
 	}
 
 	@Override

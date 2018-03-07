@@ -66,24 +66,24 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
                 	       maxtimeout = 12;
                 	       }else if (RobotConstants.gameData.charAt(0) == 'L') { // Go to switch
                 	    	fileString = "/home/lvuser/leftToSwitch.traj"; 
-                   	    	RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
+                   	       RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
                    	       maxtimeout = 10;
                 	       }else { // Position 1 is not left it must be right - go to far switch
                 	    //	fileString = "/home/lvuser/leftToFarSwitch.traj"; 
                 	    	fileString = "/home/lvuser/driveStraight.traj"; 
-                      	//    RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
-                    	      RobotConstants.targetPositionRotations = RobotConstants.kArm_FieldHT;	
+                     //	    RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
+                            RobotConstants.targetPositionRotations = RobotConstants.kArm_FieldHT; 
                       	    maxtimeout = 10;
                 	       } // end left processing
                            break;
                   case 2:  // Position Center 
            	               if (RobotConstants.gameData.charAt(0) == 'L') { // Go to left switch
            	    	        fileString = "/home/lvuser/CenterToLeftSwitch.traj"; 
-           	    	        RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
+           	    	       RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
            	    	        maxtimeout = 10;
            	               }else  { // Go to right switch
            	                fileString = "/home/lvuser/CenterToRightSwitch.traj"; 
-              	    	    RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
+              	    	   RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
               	    	    maxtimeout = 10;
            	               } // end center processing
                            break;
@@ -94,22 +94,24 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
                 	        maxtimeout = 12;
            	               }else if (RobotConstants.gameData.charAt(0) == 'R') { // Go to switch
            	                fileString = "/home/lvuser/rightToSwitch.traj"; 
-              	    	    RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
-    
-              	    	    maxtimeout = 10;
+              	           RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
+                	    	maxtimeout = 10;
            	               }else { // Position 1 is not left it must be left - go to far switch
-           	    	//        fileString = "/home/lvuser/rightToFarSwitch.traj"; 
+           	    	//      fileString = "/home/lvuser/rightToFarSwitch.traj"; 
            	                fileString = "/home/lvuser/driveStraight.traj";    
-                 	  //      RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
+                 	  //    RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT;
+                 	       RobotConstants.targetPositionRotations = RobotConstants.kArm_FieldHT;	
                    	        maxtimeout = 10;
            	               } // end right processing
                            break;         
                   default: // Default drive straight 
                            fileString = "/home/lvuser/driveStraight.traj"; 
-  	    	               RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT; 
+  	    	               RobotConstants.targetPositionRotations = RobotConstants.kArm_FieldHT; 
   	      	               maxtimeout = 10;
                            break;         
                   } // end of switch
+            //  Robot.arm.armControl();
+              SmartDashboard.putNumber("Target Arm Position", RobotConstants.targetPositionRotations);
               } else {
             	fileString = "/home/lvuser/driveStraight.traj"; 
 	            RobotConstants.targetPositionRotations = RobotConstants.kArm_SwitchHT; 
