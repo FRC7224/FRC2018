@@ -46,13 +46,15 @@ public class RobotConstants {
 	public static final int kallowableCloseLoopError = 300;
 	public static final int kPIDLoopIdx = 0;
 	public static final int kTimeoutMs = 10;
-	public static final double kMaxSpeed = 0.6;
+	public static final double kSlowArm = 2.5;
+	public static final double kNormalArm = 4.0;
+	public static double kMaxSpeed = kNormalArm;
 	public static final double kStopSpeed = 0.0;
 	public static double targetPositionRotations = 0;
 	public static double kArmManualSensitivity = 2000;
 	public static double kArm_Zero_HT = 0;
 	public static double kArm_FieldHT = 5000;
-	public static double kArm_SwitchHT = 85000;
+	public static double kArm_SwitchHT = 130000;
 	public static double kArm_ScaleHT = 280000; 
 	public static double kArmMinHt = 0;
 	public static double kArmMaxHt = 320000;

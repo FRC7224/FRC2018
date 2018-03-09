@@ -1,8 +1,11 @@
 package org.usfirst.frc.team7224.robot.commands;
 
 
+import org.usfirst.frc.team7224.robot.RobotConstants;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutonomousCmdWait extends Command {
 
@@ -21,6 +24,8 @@ public class AutonomousCmdWait extends Command {
 
 	@Override
 	protected void execute() {
+		SmartDashboard.putNumber("wait timer", timer.get() );
+		SmartDashboard.putNumber("Arm Speed", RobotConstants.kMaxSpeed );
 	}
 
 	@Override

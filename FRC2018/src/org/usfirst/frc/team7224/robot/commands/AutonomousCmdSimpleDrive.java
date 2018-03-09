@@ -25,12 +25,12 @@ public class AutonomousCmdSimpleDrive extends Command {
 	public AutonomousCmdSimpleDrive (double motorpower, double time) {
 		power = motorpower;
 		drivetime = time;
+		timeout = new Timer();
 		requires(Robot.chassis);
 	}
 
 	@Override
 	protected void initialize() {
-		timeout = new Timer();
 		timeout.start();
 		Robot.chassis.setupDrive();
 	}
@@ -39,24 +39,26 @@ public class AutonomousCmdSimpleDrive extends Command {
 	protected void execute() {
 		Robot.chassis.displayChasisData();
 		Robot.chassis.arcadeDrive(power, 0);
-//		 SmartDashboard.putNumber("simpledrive timer", timeout.get() );
+		SmartDashboard.putNumber("simpledrive timer", timeout.get() );
 		
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if (timeout.get() > drivetime) {
-			Robot.chassis.arcadeDrive(0, 0);
-			Robot.chassis.resetgyro();
-			Robot.chassis.resetEncoders();
-			return true;	}	
-		else
-		    return false;
-	}
+		if (timeout.get() >= drivetime) {
+			return true;
+		} else {
+			return false;
+		}
+       
+}
 	
 	@Override
 	protected void end() {
 		Robot.chassis.arcadeDrive(0, 0);
+		Robot.chassis.resetgyro();
+		Robot.chassis.resetEncoders();
+		SmartDashboard.putNumber("simpledrive DONE", timeout.get() );
 		timeout.stop();
 		timeout.reset();
 	}

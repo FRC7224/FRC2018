@@ -36,7 +36,7 @@ public class ArmClosedLoop extends Command {
      	    		(height * RobotConstants.kArmManualSensitivity); 
      	    
      	    
-     	   if (Robot.oi.joystick1.getRawButtonPressed(RobotConstants.kArmOverideButton)) {
+     	   if (Robot.oi.joystick1.getRawButton(RobotConstants.kArmOverideButton)) {
      		   /// This is bad only use in an emergancy 
      		     SmartDashboard.putNumber("Override", RobotConstants.targetPositionRotations);
      		    if (RobotConstants.targetPositionRotations <= RobotConstants.kArmMinHt) 
@@ -73,8 +73,8 @@ public class ArmClosedLoop extends Command {
      	    
      	  
      	    Robot.arm.armControl();
-      //      SmartDashboard.putNumber("Height", height);
-      //      SmartDashboard.putNumber("Target Arm Position", RobotConstants.targetPositionRotations);
+           SmartDashboard.putNumber("Height", height);
+           SmartDashboard.putNumber("Target Arm Position", RobotConstants.targetPositionRotations);
 
             
     }

@@ -12,12 +12,12 @@ public class AutonomousGrpRightAutoSelect extends CommandGroup{
          addSequential(new AutonomousCmdClaw(true)); // Close claw
          addSequential(new AutonomousCmdWait(0.5)); // wait 
          addSequential(new AutonomousCmdTrajectoryFollowerTwoFixFile(3)); // 3 = Right
-	     addSequential(new AutonomousCmdWait(0.5)); // wait 
+	     addSequential(new AutonomousCmdWait(0.2)); // wait 
 	     addSequential(new AutonomousCmdClaw(false)); // Open claw
-	     addSequential(new AutonomousCmdWait(0.5)); // wait
-	     addSequential(new AutonomousCmdSimpleDrive(-0.2,1.0)); // Backup
-	     addSequential(new AutonomousCmdSimpleDrive(-0.2,1.0)); // Backup     
-         addParallel(new AutonomousCmdArmHeight(RobotConstants.kArm_Zero_HT)); // Lower Arm
-      }
+	     addSequential(new AutonomousCmdWait(0.2)); // wait
+	     addSequential(new AutonomousCmdSimpleDrive(-0.3,1.0)); // Backup
+	     addSequential(new AutonomousCmdArmHeight(RobotConstants.kArm_Zero_HT)); // Lower Arm
+	     addSequential(new AutonomousCmdWait(3.0)); // wait
+        }
     }
 
