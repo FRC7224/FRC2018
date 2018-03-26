@@ -244,14 +244,14 @@ public class Chassis extends PIDSubsystem {
 	
 	public void displayChasisData() {
 		// These are the new encoders
-	/*	SmartDashboard.putNumber("LEFT ENCODER", leftEncoder.get());
+		SmartDashboard.putNumber("LEFT ENCODER", leftEncoder.get());
 		SmartDashboard.putNumber("RIGTH ENCODER", rightEncoder.get());
 		SmartDashboard.putNumber("Chassis angle", gyro.getAngle());
 		SmartDashboard.putNumber("Chassis gyro setpoint", getSetpoint());
 		SmartDashboard.putNumber("Chassis gyro error", getPIDController().getError());
 		SmartDashboard.putNumber("Chassis turn", RobotConstants.gyroPIDOutput);
 		SmartDashboard.putNumber("Drive Rate",leftEncoder.getRate());
-		*/
+		
 	}
 	
 	
