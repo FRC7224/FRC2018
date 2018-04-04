@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class AutonomousCmdWait extends Command {
+public class AutonomousCmdArmReset extends Command {
 
 	double timetorun;
 	Timer timer;
 	
-	public AutonomousCmdWait(double time) {
+	public AutonomousCmdArmReset(double time) {
 		timetorun = time;
 		timer = new Timer();
 	}
@@ -41,6 +41,8 @@ public class AutonomousCmdWait extends Command {
 	@Override
 	protected void end() {
 		timer.stop();
+		SmartDashboard.putNumber("Arm Speed", RobotConstants.kMaxSpeed );
+		Robot.arm.armSetup();
 	}
 
 	@Override

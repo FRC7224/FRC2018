@@ -46,8 +46,8 @@ public class RobotConstants {
 	public static final int kallowableCloseLoopError = 300;
 	public static final int kPIDLoopIdx = 0;
 	public static final int kTimeoutMs = 10;
-	public static final double kSlowArm = 2.5;
-	public static final double kNormalArm = 4.0;
+	public static final double kSlowArm = 0.5;
+	public static final double kNormalArm = 2.5;
 	public static double kMaxSpeed = kNormalArm;
 	public static final double kStopSpeed = 0.0;
 	public static double targetPositionRotations = 0;
@@ -59,9 +59,9 @@ public class RobotConstants {
 	public static double kArmMinHt = 0;
 	public static double kArmMaxHt = 320000;
 	public static double kArmPIDF = 0.0;
-	public static double kArmPIDP = 0.05;
+	public static double kArmPIDP = 0.045;
 	public static double kArmPIDI = 0.0001;
-	public static double kArmPIDD = 0.5;
+	public static double kArmPIDD = 0.4;
 	
 		
 	// Claw 

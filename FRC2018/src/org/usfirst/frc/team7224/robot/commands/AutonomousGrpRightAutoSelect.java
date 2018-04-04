@@ -16,9 +16,10 @@ public class AutonomousGrpRightAutoSelect extends CommandGroup{
 	     addSequential(new AutonomousCmdClaw(true)); // Open claw
 	     addSequential(new AutonomousCmdWait(0.2)); // wait
 	     addSequential(new AutonomousCmdSimpleDrive(-0.3,1.5)); // Backup
-	     addSequential(new AutonomousCmdWait(0.2)); // wait
+	     addSequential(new AutonomousCmdWait(0.1)); // wait
 	     addSequential(new AutonomousCmdArmHeight(RobotConstants.kArm_Zero_HT)); // Lower Arm
-	     addSequential(new AutonomousCmdWait(3.0)); // wait
+	     addSequential(new AutonomousCmdClaw(false)); // Close claw
+	     addSequential(new AutonomousCmdArmReset(1.5)); // wait
         }
     }
 

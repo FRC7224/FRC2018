@@ -54,6 +54,7 @@ public class AutonomousCmdTrajectoryFollowerTwoFixFile extends Command {
            // Determine Switch, Scale or far Switch
            // *********************************************** 
             RobotConstants.kMaxSpeed = RobotConstants.kSlowArm; // slow down arm 
+            Robot.arm.armSetup();
               if(RobotConstants.gameData.length() > 0) {
                   switch (Position) { 
                   case 0:  // Drive straight
