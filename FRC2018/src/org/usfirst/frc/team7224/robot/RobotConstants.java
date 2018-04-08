@@ -79,8 +79,8 @@ public class RobotConstants {
 	public static boolean WinchState = false;
 	
 	// Intake 
-	public static double kmaxIntakeSpeed =  0.1;
-	public static double kminIntakeSpeed = -0.1;
+	public static double kmaxIntakeSpeed =  0.3;
+	public static double kminIntakeSpeed = -1.0;
 	
 	// Driverstation
 	public static String gameData = "XXX";
